@@ -1,0 +1,38 @@
+<div id="profil-edit">
+    <h2>{{editProfile.name}}'s PROFILE SETTINGS</h2>
+
+
+
+
+
+
+
+    <form action="/profile/edit" method="POST">
+        <img src="{{editProfile.profile_pic}}" alt="profile's picture">
+        <br>
+        <label for="changesPhoto">Changes your photo</label>
+        <br>
+        <input type="file" name="changesPhoto">
+
+        <br>
+        <br><br>
+
+        <label for="username">Username</label>
+        <input type="text" name="username" value="{{editProfile.username}}">
+
+        <br>
+
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{editProfile.name}}">
+        <br>
+
+    
+
+        <button>Update Changes</button>
+
+    </form>
+
+    <form action="">
+        <button>Delete my account</button>
+    </form>
+</div>

@@ -82,4 +82,7 @@ router.post("/like/:id", isLoggedIn, async (req, res, next) => {
 const authRoutes = require("./auth.routes");
 router.use("/", authRoutes);
 
+const userRoutes = require("./user.routes");
+router.use("/profile", userRoutes);
+
 module.exports = router;
