@@ -1,14 +1,36 @@
+<div id="register-view">
+
+   <img src="" alt="Codegram-logo">
+
 <form action="/auth/signup" method="POST">
    <label> Username
       <input type="text" name="username">
    </label>
+
+   <label> Name
+      <input type="text" name="name">
+   </label>
+
+   <label> Email
+      <input type="text" name="email">
+   </label>
+
    <label> Password
       <input type="password" name="password">
    </label>
 
-   <button type="submit">Submit</button>
+   <label> Confirm your Password
+      <input type="password" name="passwordConfirm">
+   </label>
+
+   <button type="submit">Register</button>
 </form>
+<a href="">Do you have already an account?</a>
 
 {{#if errorMessage}}
    {{errorMessage}}
 {{/if}}
+
+
+
+</div>

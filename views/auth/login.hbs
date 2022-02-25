@@ -1,13 +1,23 @@
-<form action="/auth/login" method="POST">
-   <label> Username
-      <input type="text" name="username">
-   </label>
-   <label> Password
-      <input type="password" name="password">
-   </label>
+<h1>CodeGram</h1>
 
-   <button type="submit">Submit</button>
-</form>
+<div>
+    <form action="/" method="POST">
+       <label> Username
+          <input type="text" name="username">
+       </label>
+        <br>
+       <label> Password
+          <input type="password" name="password">
+       </label>
+        <br>
+       <button type="submit">Login</button>
+    </form>
+</div>
+<div>
+    <a href="/signup">Register</a>
+    <a href="/restore">Forgot your password?</a>
+</div>
+
 
 {{#if errorMessage}}
    {{errorMessage}}

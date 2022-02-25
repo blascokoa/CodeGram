@@ -18,12 +18,14 @@ router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", isLoggedOut, (req, res) => {
-  const { username, password } = req.body;
 
-  if (!username) {
+
+router.post("/signup", (req, res) => {
+  const { username, password, email, passwordConfirm, name } = req.body;
+
+  if (!username || !email) {
     return res.status(400).render("auth/signup", {
-      errorMessage: "Please provide your username.",
+      errorMessage: "Please provide your username and email.",
     });
   }
 
@@ -31,6 +33,12 @@ router.post("/signup", isLoggedOut, (req, res) => {
     return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
+  }
+  if(password !== passwordConfirm){
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Your password needs to be the same.",
+    })
+
   }
 
   //   ! This use case is using a regular expression to control for special characters and min length
@@ -63,6 +71,8 @@ router.post("/signup", isLoggedOut, (req, res) => {
         return User.create({
           username,
           password: hashedPassword,
+          email,
+          name
         });
       })
       .then((user) => {
@@ -89,11 +99,20 @@ router.post("/signup", isLoggedOut, (req, res) => {
   });
 });
 
-router.get("/login", isLoggedOut, (req, res) => {
-  res.render("auth/login");
+router.get("/", (req, res) => {
+  if(!isLoggedIn){
+    console.log("no estoy login")
+    res.render("auth/login");
+    
+
+  }else{
+    console.log("si estoy login")
+    res.render("index.hbs");
+
+  }
 });
 
-router.post("/login", isLoggedOut, (req, res, next) => {
+router.post("/", (req, res, next) => {
   const { username, password } = req.body;
 
   if (!username) {
@@ -109,6 +128,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
+  console.log("voy a buscar user")
 
   // Search the database for a user with the username submitted in the form
   User.findOne({ username })
@@ -127,6 +147,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
             errorMessage: "Wrong credentials.",
           });
         }
+        console.log("voy a guardar sesion")
         req.session.user = user;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         return res.redirect("/");
