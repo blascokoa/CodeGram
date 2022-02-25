@@ -2,8 +2,13 @@ const { Schema, model } = require("mongoose");
 
 const publicationSchema = new Schema(
   {
+    code: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
+      required: true,
     },
     public: {
       type: Boolean,

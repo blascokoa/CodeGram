@@ -1,0 +1,65 @@
+<div class="use-full-size flex-column new-element-position">
+    <h1>New Publication</h1>
+    <form  method="POST" action="/new">
+        <div class="flex-row new-element-position use-full-size">
+            <div>
+                <label for="newCodeElement">
+                    <h4>Write here your code</h4>
+                    <textarea name="newCodeElement" class="text-editing text-edit-size" ></textarea>
+                </label>
+            </div>
+            <div class="margin-left">
+                <h4>Description:</h4>
+                <label for="newDescriptionElement">
+                    <textarea name="newDescriptionElement" class="text-editing" ></textarea>
+                </label>
+                <br>
+                <h4>Select language</h4>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="htmlSelector" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1" name="htmlSelector">
+                        HTML
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cssSelector" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2" name="cssSelector">
+                        CSS
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="jsSelector" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2" name="jsSelector">
+                        JavaScript
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pythonSelector" id="flexRadioDefault2">
+                    <label class="form-check-label" for="flexRadioDefault2" name="pythonSelector">
+                        Python
+                    </label>
+                </div>
+                <div class="flex-row flex-centered-row">
+                    <!-- Rounded switch -->
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox" id="toggleButton" name="privateButton">
+                            <span class="slider round text-button">Yes</span>
+                        </label>
+                    </div>
+                    <div class="toggle-button-text button-private">
+                        <h5>Post as Private</h5>
+                    </div>
+                </div>
+                <button action="sumbit">Publish</button>
+            </div>
+        </div>
+    </form>
+    {{#if error}}
+        <div>{{error}}</div>
+    {{/if}}
+
+</div>
+
+

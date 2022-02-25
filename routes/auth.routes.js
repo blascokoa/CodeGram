@@ -74,6 +74,7 @@ router.post("/signup", (req, res) => {
       })
       .then((user) => {
         // Bind the user to the session object
+        req.app.locals.user = user;
         req.session.user = user;
         res.redirect("/");
       })
@@ -96,10 +97,6 @@ router.post("/signup", (req, res) => {
   });
 });
 
-router.get("/", isLoggedIn, (req, res) => {
-  res.render("index.hbs");
-});
-
 router.get("/", isLoggedOut, (req, res) => {
   res.render("auth/login");
 });
@@ -120,7 +117,6 @@ router.post("/", (req, res, next) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-  console.log("voy a buscar user");
 
   // Search the database for a user with the username submitted in the form
   User.findOne({ username })
@@ -139,7 +135,7 @@ router.post("/", (req, res, next) => {
             errorMessage: "Wrong credentials.",
           });
         }
-        console.log("voy a guardar sesion");
+        req.app.locals.user = user;
         req.session.user = user;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         return res.redirect("/");
@@ -155,6 +151,7 @@ router.post("/", (req, res, next) => {
 });
 
 router.get("/logout", isLoggedIn, (req, res) => {
+  req.app.locals.user = "";
   req.session.destroy((err) => {
     if (err) {
       return res

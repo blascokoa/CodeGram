@@ -13,6 +13,27 @@ const express = require("express");
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 
+hbs.registerHelper("language", function (lang) {
+  switch (lang) {
+    case "css":
+      return "language-css";
+      break;
+    case "html":
+      return "language-html";
+      break;
+    case "js":
+      return "language-js";
+      break;
+    case "py":
+      return "language-py";
+      break;
+  }
+});
+
+hbs.registerHelper("count", function (arrayToCount) {
+  return arrayToCount.length;
+});
+
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
