@@ -26,7 +26,7 @@ const publicationSchema = new Schema(
     comments: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Celebrity",
+        ref: "Comment",
       },
     ],
   },
