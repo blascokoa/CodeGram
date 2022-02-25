@@ -5,7 +5,20 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      // unique: true -> Ideally, should be unique, but its up to you
+      unique: true, // -> Ideally, should be unique, but its up to you
+    },
+    name: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+    profile_pic: {
+      type: String,
+    },
+    role: {
+      type: String,
+      default: "verified",
     },
     password: String,
   },
