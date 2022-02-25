@@ -6,12 +6,14 @@ const userSchema = new Schema(
     username: {
       type: String,
       unique: true, // -> Ideally, should be unique, but its up to you
+      required: true,
     },
     name: {
       type: String,
     },
     email: {
       type: String,
+      required: true,
     },
     profile_pic: {
       type: String,
@@ -20,7 +22,10 @@ const userSchema = new Schema(
       type: String,
       default: "verified",
     },
-    password: String,
+    password: {
+      type: String,
+      required: true,
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

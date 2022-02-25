@@ -18,8 +18,6 @@ router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
-
-
 router.post("/signup", (req, res) => {
   const { username, password, email, passwordConfirm, name } = req.body;
 
@@ -34,11 +32,10 @@ router.post("/signup", (req, res) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-  if(password !== passwordConfirm){
+  if (password !== passwordConfirm) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be the same.",
-    })
-
+    });
   }
 
   //   ! This use case is using a regular expression to control for special characters and min length
@@ -72,7 +69,7 @@ router.post("/signup", (req, res) => {
           username,
           password: hashedPassword,
           email,
-          name
+          name,
         });
       })
       .then((user) => {
@@ -99,17 +96,12 @@ router.post("/signup", (req, res) => {
   });
 });
 
-router.get("/", (req, res) => {
-  if(!isLoggedIn){
-    console.log("no estoy login")
-    res.render("auth/login");
-    
+router.get("/", isLoggedIn, (req, res) => {
+  res.render("index.hbs");
+});
 
-  }else{
-    console.log("si estoy login")
-    res.render("index.hbs");
-
-  }
+router.get("/", isLoggedOut, (req, res) => {
+  res.render("auth/login");
 });
 
 router.post("/", (req, res, next) => {
@@ -128,7 +120,7 @@ router.post("/", (req, res, next) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-  console.log("voy a buscar user")
+  console.log("voy a buscar user");
 
   // Search the database for a user with the username submitted in the form
   User.findOne({ username })
@@ -147,7 +139,7 @@ router.post("/", (req, res, next) => {
             errorMessage: "Wrong credentials.",
           });
         }
-        console.log("voy a guardar sesion")
+        console.log("voy a guardar sesion");
         req.session.user = user;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         return res.redirect("/");
