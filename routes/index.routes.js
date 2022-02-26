@@ -72,9 +72,25 @@ router.post("/like/:id", isLoggedIn, async (req, res, next) => {
   const { id } = req.params;
 
   const query_publication = await Publication.findById(id);
-  if (!query_publication.likes.includes(req.user)) {
-    console.log("User not on like list");
-    await Publication.findByIdAndUpdate(id, { likes: req.user });
+  if (!query_publication.likes.includes(req.user._id)) {
+    await Publication.findByIdAndUpdate(id, { $push: { likes: req.user } });
+  } else {
+    await Publication.findByIdAndUpdate(id, { $pull: { likes: req.user._id } });
+  }
+  res.redirect("/");
+});
+
+router.get("/details/:id", isLoggedIn, async (req, res, next) => {
+  const { id } = req.params;
+  const query_publication = await Publication.findById(id).populate("owner");
+  res.render("elements/detail.element.hbs", { query_publication });
+});
+
+router.post("/delete/:id", isLoggedIn, async (req, res, next) => {
+  const { id } = req.params;
+  const query_publication = await Publication.findById(id).populate("owner");
+  if (query_publication.owner._id.toString() === req.session.user._id) {
+    await Publication.findByIdAndDelete(id);
   }
   res.redirect("/");
 });
