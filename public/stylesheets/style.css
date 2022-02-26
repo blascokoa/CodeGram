@@ -161,3 +161,7 @@ input:checked + .slider:before {
 .toggle-button-text {
   margin-left: 10px;
 }
+
+/* img {
+  border-radius: 60% 30%;
+} */

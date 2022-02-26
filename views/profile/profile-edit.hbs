@@ -7,12 +7,12 @@
 
 
 
-    <form action="/profile/edit" method="POST">
-        <img src="{{editProfile.profile_pic}}" alt="profile's picture">
+    <form action="/profile/edit" method="POST" enctype="multipart/form-data">
+        <img src="{{#if editProfile.profile_pic}}{{editProfile.profile_pic}}{{else}}"./images/image.jpg"{{/if}}" alt="profile's picture">
         <br>
-        <label for="changesPhoto">Changes your photo</label>
+        {{!-- <label for="image">Changes your photo</label> --}}
         <br>
-        <input type="file" name="changesPhoto">
+        <input type="file" name="image">
 
         <br>
         <br><br>
@@ -32,7 +32,7 @@
 
     </form>
 
-    <form action="">
+    <form action="/profile/delete" method="post">
         <button>Delete my account</button>
     </form>
 </div>
