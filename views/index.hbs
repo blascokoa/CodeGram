@@ -14,7 +14,10 @@
                 <div class="like-details">
                     <form method="post" action="/like/{{this._id}}">
                         <code class="code-size">{{count this.likes}}</code>
-                        <input type="image" src="./images/heart-red.png" width="20px" alt="heart-red" name="like"/>
+                        <input type="image" src="./images/heart-red.png" width="20px"
+                               alt="heart-red" name="like" style="display: {{userLiked this.likes true}}"/>
+                        <input type="image" src="./images/heart-empty.png" width="20px"
+                               alt="heart-red" name="like" style="display: {{userLiked this.likes false}}"/>
                     </form>
                 </div>
                 <div class="messages-details">

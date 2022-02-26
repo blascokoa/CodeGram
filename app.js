@@ -30,9 +30,35 @@ hbs.registerHelper("language", function (lang) {
   }
 });
 
-hbs.registerHelper("count", function (arrayToCount) {
+hbs.registerHelper("count", (arrayToCount)=> {
   return arrayToCount.length;
 });
+
+hbs.registerHelper("isOwner", (ownerId, user)=>{
+  if(ownerId._id.toString() === user){
+    return "flex"
+  }else{
+    return "none"
+  }
+})
+
+hbs.registerHelper("userLiked", (likeArray, empty)=>{
+  if (likeArray.includes(app.locals.user._id)){
+    if (empty){
+      return "in-line"
+    } else{
+      return "none"
+    }
+  }else{
+    if (empty){
+      return "none"
+    } else{
+      return "in-line"
+    }
+  }
+})
+
+
 
 const app = express();
 
