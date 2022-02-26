@@ -3,7 +3,7 @@ module.exports = (req, res, next) => {
   if (!req.session.user) {
     return res.render("auth/login");
   }
-  console.log("there is a session");
+  req.app.locals.user = req.session.user;
   req.user = req.session.user;
   next();
 };
