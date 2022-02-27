@@ -17,6 +17,7 @@ const userSchema = new Schema(
     },
     profile_pic: {
       type: String,
+      default: "https://res.cloudinary.com/alexfurty/image/upload/v1645988410/codegram-project/gkfw2udzaotuesyaqokh.jpg"
     },
     role: {
       type: String,

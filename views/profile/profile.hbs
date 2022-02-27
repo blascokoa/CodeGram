@@ -1,7 +1,7 @@
 <div id="profil-view">
     <h2>{{myProfile.name}}'s PROFILE</h2>
 
-    <img src="{{#if myProfile.profile_pic}}{{myProfile.profile_pic}}{{else}}"./images/image.jpg"{{/if}}" alt="profile's picture">
+    <img class="rounded--img" src="{{myProfile.profile_pic}}"  width="150" alt="profile's picture">
     <form action="/profile/edit">
         <button>Edit</button>
     </form>
