@@ -256,7 +256,8 @@ input:checked + .slider:before {
 }
 .verticalLine { 
 border-left: thin solid grey; 
-margin-top: 10vh;
+margin: 10vh 2vh;
+
  }
 
 
