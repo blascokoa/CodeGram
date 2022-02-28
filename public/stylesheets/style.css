@@ -162,6 +162,6 @@ input:checked + .slider:before {
   margin-left: 10px;
 }
 
-/* img {
-  border-radius: 60% 30%;
-} */
+.margin-top {
+  margin-top: 100px;
+}
