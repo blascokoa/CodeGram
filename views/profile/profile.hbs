@@ -1,11 +1,44 @@
-<div id="profil-view">
-    <h2>{{myProfile.name}}'s PROFILE</h2>
 
-    <img class="rounded--img" src="{{myProfile.profile_pic}}"  width="150" alt="profile's picture">
-    <form action="/profile/edit">
-        <button>Edit</button>
-    </form>
-    <h4>{{myProfile.username}}</h4>
-    <h4>Bio??</h4>
+<div class="d-flex justify-content-around profile-container">
+<div class="publications-left custom-font">
+  <ul>
+    {{#each myPublications}}
+      <li><a href="/details/{{this._id}}">{{this.description}}</a></li>
+    {{/each}}
+  </ul>
 
+</div>
+<div class="verticalLine"></div>
+
+
+
+
+<div class="d-flex flex-column bd-highlight mb-3 align-items-center profile-center">
+  <h2 >{{myProfile.name}}'s PROFILE</h2>
+  <div class="circular--landscape">
+    <img
+      
+      src="{{myProfile.profile_pic}}"
+      width="150"
+      alt="profile's picture"
+    />
+  </div>
+  <br>
+  <span>1001 followers  || 500 following</span>
+  <br><br>
+  <form action="/profile/edit">
+    <button class="button-14" role="button">Edit profile</button>
+  </form>
+  <h4>{{myProfile.username}}</h4>
+  <span>{{myProfile.bio}}</span>
+
+</div>
+
+<div class="verticalLine"></div>
+
+<div class="comments-rigth">
+    <ul>
+        <li>comentarios aqui</li>
+    </ul>
+</div>
 </div>
