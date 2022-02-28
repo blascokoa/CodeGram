@@ -46,7 +46,7 @@ a {
 .text-card {
   margin-top: 75px;
   margin-left: 25px;
-  max-width: 500px;
+  width: 500px;
 }
 
 .code-size {
@@ -178,13 +178,20 @@ input:checked + .slider:before {
   color: rgb(214, 51, 132);
 }
 
+.remove-style:hover a {
+  text-decoration: none;
+  color: rgb(84, 27, 61);
+}
+
 .circular--landscape {
   display: inline-block;
   position: relative;
-  width: 150px;
-  height: 150px;
   overflow: hidden;
   border-radius: 50%;
+}
+.circular--landscape-size{
+  width: 150px;
+  height: 150px;
 }
 
 .button-14 {
