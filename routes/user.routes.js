@@ -56,14 +56,18 @@ router.post("/delete", isLoggedIn, async (req, res, next) => {
   const queryCodes = await Publication.find({
     owner: id,
   });
-  queryCodes.forEach(async (element) => {
-    await Publication.findByIdAndDelete(element._id);
+  queryCodes.forEach((element) => {
+    Publication.findByIdAndDelete(element._id).then(() => {
+      return true;
+    });
   });
   //Delete each like from the user
   const queryPublications = await Publication.find();
-  queryPublications.forEach(async (element) => {
-    await Publication.findByIdAndUpdate(element._id, {
+  queryPublications.forEach((element) => {
+    Publication.findByIdAndUpdate(element._id, {
       $pull: { likes: req.user._id },
+    }).then(() => {
+      return true;
     });
   });
 

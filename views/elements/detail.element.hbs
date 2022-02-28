@@ -1,31 +1,85 @@
 <h1>CodeGram Element Detail</h1>
 
-<div class="text-card">
-    <div class="flex-row flex-fill-space">
-        <img class="rounded--img" src={{#if query_publication.owner.profile_pic}}{{query_publication.owner.profile_pic}}{{else}}"../images/image.jpg"{{/if}} alt="profile-pic" width="40px"/>
-        <code class="username-size">{{query_publication.owner.username}}</code>
-    </div>
-    <div >
-        <pre class="card-body"><code class="{{language query_publication.language}}">{{query_publication.code}}</code></pre>
-    </div>
-    <div class="flex-row bottom-card">
-        <div class="card-details flex-row ">
-            <div class="like-details">
-                <form method="post" action="/like/{{query_publication._id}}">
-                    <code class="code-size">{{count query_publication.likes}}</code>
-                    <input type="image" src="../images/heart-red.png" width="20px" alt="heart-red" name="like"/>
-                </form>
+<div class="flex-column flex-centered-row">
+    <div class="flex-row flex-centered-row new-element-position" >
+        <div class="text-card detail-width">
+            <div class="flex-row flex-fill-space">
+                <img class="rounded--img" src={{#if query_publication.owner.profile_pic}}{{query_publication.owner.profile_pic}}{{else}}"../images/image.jpg"{{/if}} alt="profile-pic" width="40px"/>
+                <code class="username-size">{{query_publication.owner.username}}</code>
             </div>
-            <div class="messages-details">
-                <code class="code-size">{{count query_publication.comments}}</code>
-                <img src="../images/comment.png" alt="comment" width="20px"/>
+            <div class="">
+                <pre class="card-body"><code class="{{language query_publication.language}}">{{query_publication.code}}</code></pre>
             </div>
-        </div>
-        <div>
-            <form method="post" action="/delete/{{query_publication._id}}" style="display: {{isOwner query_publication.owner._id user._id}}">
-                <input type="image" src="../images/trash.png" width="20px" alt="trash-image" name="like" />
-            </form>
+            <div class="flex-row bottom-card">
+                <div class="card-details flex-row ">
+                    <div class="like-details">
+                        <form method="post" action="/like/{{query_publication._id}}">
+                            <code class="code-size">{{count query_publication.likes}}</code>
+                            <input type="image" src="../images/heart-red.png" width="20px" alt="heart-red" name="like" style="display: {{userLiked query_publication.likes true}}"/>
+                            <input type="image" src="../images/heart-empty.png" width="20px" alt="heart-red" name="like" style="display: {{userLiked query_publication.likes false}}"/>
+                        </form>
+                    </div>
+                    <div class="messages-details">
+                        <code class="code-size">{{count query_publication.comments}}</code>
+                        <img src="../images/comment.png" alt="comment" width="20px"/>
+                    </div>
+                </div>
+                <div>
+                    <form method="post" action="/delete/{{query_publication._id}}" style="display: {{isOwner query_publication.owner._id}}">
+                        <input type="image" src="../images/trash.png" width="20px" alt="trash-image" name="like" />
+                    </form>
+                </div>
 
+            </div>
         </div>
+        <div class="margin-left">
+            <div>
+                <h5>Write your comment here:</h5>
+                    <form method="post" action="/details/{{query_publication._id}}">
+                        <div class="flex-column">
+                            <label for="newCommentElement">
+                                <textarea name="comment">Add a comment here</textarea>
+                            </label>
+                            <div class="flex-row flex-fill-space">
+                                <input class="margin-left" type="image" src="../images/send.png" width="20px" alt="heart-red" name="like"/>
+                                <p class="margin-zero">Send comment</p>
+                            </div>
+
+                        </div>
+                    </form>
+            </div>
+            <div>
+                <div>
+                    <h5 class="comment-margin" style="position: fixed">Other comments:</h5>
+                </div>
+                <div style="position: fixed; margin-top: 50px">
+                    {{#each query_publication.comments}}
+                        <div class="flex-row">
+                            <div style="display: {{isOwner this.owner._id}}">
+                                <form method="post" action="/delete_comment/{{this._id}}">
+                                    <input type="image" src="../images/trash.png" width="20px" alt="trash-image" name="like" />
+                                </form>
+                            </div>
+                            <div class="margin-zero {{isOwnerMsg this.owner._id}}">
+                                <div class="flex-row">
+                                    <img class="rounded--img margin-side-zero" src={{#if this.owner.profile_pic}}{{this.owner.profile_pic}}{{else}}"../images/image.jpg"{{/if}} alt="profile-pic" width="20px"/>
+                                    <h5 class="margin-zero margin-side-zero">{{this.owner.username}}:</h5>
+                                </div>
+
+                                <p class="margin-zero">{{this.message}}</p>
+                            </div>
+
+                        </div>
+
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        {{#if errorMessage}}
+            {{errorMessage}}
+        {{/if}}
     </div>
 </div>
