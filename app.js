@@ -34,11 +34,19 @@ hbs.registerHelper("count", (arrayToCount)=> {
   return arrayToCount.length;
 });
 
-hbs.registerHelper("isOwner", (ownerId, user)=>{
-  if(ownerId._id.toString() === user){
+hbs.registerHelper("isOwner", (ownerId)=>{
+  if(ownerId._id.toString() === app.locals.user._id){
     return "flex"
   }else{
     return "none"
+  }
+})
+
+hbs.registerHelper("isOwnerMsg", (ownerId)=>{
+  if(ownerId._id.toString() === app.locals.user._id){
+    return ""
+  }else{
+    return "margin-left"
   }
 })
 
