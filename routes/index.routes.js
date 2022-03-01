@@ -75,7 +75,7 @@ router.post("/like/:id", isLoggedIn, async (req, res, next) => {
   const query_publication = await Publication.findById(id);
   console.log(req.headers);
 
-  if (!query_publication.likes.includes(req.user._id)) {
+  if (!query_publication.likes.includes(req.user._id)) {   //mirar para los followers
     await Publication.findByIdAndUpdate(id, { $push: { likes: req.user._id } });
   } else {
     await Publication.findByIdAndUpdate(id, { $pull: { likes: req.user._id } });
