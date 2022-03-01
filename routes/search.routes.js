@@ -15,16 +15,13 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   });
 
   if (languageSearch.length > 0) {
-      console.log(languageSearch)
-      const publications = await Publication.find()
-      .populate("owner");
-      console.log(publications)
+    const publications = await Publication.find().populate("owner");
     res.render("search.hbs", { languageSearch, publications });
   } else {
     const publications = await Publication.find()
       .sort({ createdAt: -1 })
       .populate("owner");
-const errorMessage = "there are no results for your query"
+    const errorMessage = "there are no results for your query";
     res.render("index.hbs", { publications, errorMessage });
   }
 
