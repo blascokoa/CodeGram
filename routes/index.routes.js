@@ -136,7 +136,10 @@ router.post("/delete/:id", isLoggedIn, async (req, res, next) => {
   const { id } = req.params;
 
   const query_publication = await Publication.findById(id).populate("owner");
-  if (query_publication.owner._id.toString() === req.session.user._id) {
+  if (
+    query_publication.owner._id.toString() === req.session.user._id ||
+    isAdmin(req.app.locals.user)
+  ) {
     await Publication.findByIdAndDelete(id);
   }
   res.redirect("/");
@@ -146,8 +149,15 @@ router.post("/delete_comment/:id", isLoggedIn, async (req, res, next) => {
   const { id } = req.params;
   const origin = req.headers.referer.split("/").slice(-2);
 
-  await Publication.findByIdAndUpdate(id, { $pull: { comments: id } });
-  await Comment.findByIdAndDelete(id);
+  const query_comment = await Comment.findById(id);
+
+  if (
+    query_comment.owner._id.toString() === req.session.user._id ||
+    isAdmin(req.app.locals.user)
+  ) {
+    await Publication.findByIdAndUpdate(id, { $pull: { comments: id } });
+    await Comment.findByIdAndDelete(id);
+  }
 
   res.redirect(`/details/${origin[1]}`);
 });
@@ -156,6 +166,8 @@ const authRoutes = require("./auth.routes");
 router.use("/", authRoutes);
 
 const userRoutes = require("./user.routes");
+const isAdmin = require("../utils/is_admin");
+
 router.use("/profile", userRoutes);
 
 module.exports = router;

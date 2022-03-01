@@ -44,6 +44,10 @@
     
     <h4>{{queryUser.username}}</h4>
     <h4>Bio??</h4>
+
+    <form action="/profile/{{queryUser._id}}" method="post" style="display: {{isAdminHBS}}">
+        <button type="submit">Delete User Account using Admin powers</button>
+    </form>
     
 
 </div>
