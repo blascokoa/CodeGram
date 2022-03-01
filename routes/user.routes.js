@@ -18,7 +18,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 
 router.get("/edit", isLoggedIn, (req, res, next) => {
   const id = req.session.user._id;
-  console.log(req.session.user);
   UserModel.findById(id)
     .then((editProfile) => {
       res.render("profile/profile-edit.hbs", { editProfile });
@@ -103,18 +102,11 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
     return;
   }
 
-  const queryUser = await UserModel.findById(id)
-  const myPublications = await Publication.find({
-    owner: id
-  })
-  
-
-  res.render("profile/profile-id.hbs", {queryUser, myPublications})
-  
-
   const queryUser = await UserModel.findById(id);
-
-  res.render("profile/profile-id.hbs", { queryUser });
+  const myPublications = await Publication.find({
+    owner: id,
+  });
+  res.render("profile/profile-id.hbs", { queryUser, myPublications });
 });
 
 router.post("/follow/:id", isLoggedIn, async (req, res, next) => {
@@ -131,7 +123,6 @@ router.post("/follow/:id", isLoggedIn, async (req, res, next) => {
       $pull: { followers: req.user._id },
     });
   }
-
 
   const origin = req.headers.referer.split("/").slice(-2);
   if (origin.includes("profile")) {
@@ -151,8 +142,5 @@ router.post("/:id", isLoggedIn, async (req, res, next) => {
 
   res.render("profile/profile-id.hbs", { queryUser });
 });
-
-
-
 
 module.exports = router;

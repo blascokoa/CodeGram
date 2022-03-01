@@ -28,11 +28,13 @@ hbs.registerHelper("language", function (lang) {
     case "py":
       return "language-py";
       break;
+    default:
+      return "language-html";
+      break;
   }
 });
 
 hbs.registerHelper("count", (arrayToCount)=> {
-  console.log(arrayToCount)
   return arrayToCount.length;
 });
 
