@@ -12,11 +12,10 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   }
   const languageSearch = await Publication.find({
     language: lang.toLowerCase(),
-  });
+  }).populate("owner");
 
   if (languageSearch.length > 0) {
-    const publications = await Publication.find().populate("owner");
-    res.render("search.hbs", { languageSearch, publications });
+    res.render("search.hbs", { languageSearch });
   } else {
     const publications = await Publication.find()
       .sort({ createdAt: -1 })

@@ -1,12 +1,11 @@
-<ul>
-{{#each languageSearch}}
-
-<li><a href="/details/{{this._id}}">{{this.description}}</a></li>
- <img class="rounded--img" src={{this.owner.profile_pic}} alt="profile-pic" width="40px" height="40px"/>
-
-
-{{/each}}
-</ul>
+<div class="margin-top">
+    {{#each languageSearch}}
+        <div class="flex-row">
+            <img class="rounded--img" src="{{this.owner.profile_pic}}" alt="profile-pic" width="40px" height="40px"/>
+            <a href="/details/{{this._id}}">{{this.description}}</a>
+        </div>
+    {{/each}}
+</div>
 
 
 
