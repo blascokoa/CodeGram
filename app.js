@@ -60,6 +60,14 @@ hbs.registerHelper("isAdminHBS", () =>{
    }
 })
 
+hbs.registerHelper("follow", (followersArray) =>{
+  if (followersArray.includes(app.locals.user._id)){
+    return "UnFollow"
+  }else{
+    return "Follow"
+  }
+})
+
 hbs.registerHelper("userLiked", (likeArray, empty)=>{
   if (likeArray.includes(app.locals.user._id)){
     if (empty){
@@ -93,6 +101,7 @@ const index = require("./routes/index.routes");
 app.use("/", index);
 
 const authRoutes = require("./routes/auth.routes");
+const UserModel = require("./models/User.model");
 app.use("/auth", authRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

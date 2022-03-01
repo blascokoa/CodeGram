@@ -107,13 +107,36 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
   res.render("profile/profile-id.hbs", { queryUser });
 });
 
+router.post("/follow/:id", isLoggedIn, async (req, res, next) => {
+  const { id } = req.params;
+
+  const query_user = await UserModel.findById(id);
+
+  if (!query_user.followers.includes(req.user._id)) {
+    await UserModel.findByIdAndUpdate(id, {
+      $push: { followers: req.user._id },
+    });
+  } else {
+    await UserModel.findByIdAndUpdate(id, {
+      $pull: { followers: req.user._id },
+    });
+  }
+
+  const origin = req.headers.referer.split("/").slice(-2);
+  if (origin.includes("profile")) {
+    res.redirect(`/profile/${origin[1]}`);
+  } else {
+    res.redirect("/");
+  }
+});
+
 router.post("/:id", isLoggedIn, async (req, res, next) => {
   const { id } = req.params;
   if (id === req.session.user._id) {
     res.redirect("/profile");
     return;
   }
-  const queryUser = await UserModel.findById(id);
+  const queryUser = await UserModel.findById(id).populate("followers");
 
   res.render("profile/profile-id.hbs", { queryUser });
 });

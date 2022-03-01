@@ -36,8 +36,8 @@
 
 <div class="d-flex flex-column bd-highlight mb-3 align-items-center">
     <h2>{{queryUser.name}}'s PROFILE</h2>
-    <form action="">
-        <button>Follow</button>
+    <form action="/profile/follow/{{queryUser._id}}" method="post">
+        <button>{{follow queryUser.followers}}</button>
     </form>
     <div class="circular--landscape circular--landscape-size"><img src="{{queryUser.profile_pic}}"  width="150" alt="profile's picture"></div>
 

@@ -17,15 +17,22 @@ const userSchema = new Schema(
     },
     profile_pic: {
       type: String,
-      default: "https://res.cloudinary.com/alexfurty/image/upload/v1645988410/codegram-project/gkfw2udzaotuesyaqokh.jpg"
+      default:
+        "https://res.cloudinary.com/alexfurty/image/upload/v1645988410/codegram-project/gkfw2udzaotuesyaqokh.jpg",
     },
     bio: {
-      type: String
+      type: String,
     },
     role: {
       type: String,
       default: "verified",
     },
+    followers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     password: {
       type: String,
       required: true,
