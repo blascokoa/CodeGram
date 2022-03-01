@@ -266,5 +266,23 @@ border-left: thin solid grey;
 margin: 10vh 2vh;
 
  }
+ .lupa-button{
+   border: none;
+   background: none;
+ }
+
+ .input-button{
+   border-radius: 20px;
+   border: white;
+   background-color: rgb(208, 52, 107);
+   opacity: 0.8;
+   width: 20vh;
+   height: 25px;
+ }
+
+ .input-button::placeholder{
+   color: black;
+   font-size: 15px;
+ }
 
 

@@ -102,6 +102,16 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
     res.redirect("/profile");
     return;
   }
+
+  const queryUser = await UserModel.findById(id)
+  const myPublications = await Publication.find({
+    owner: id
+  })
+  
+
+  res.render("profile/profile-id.hbs", {queryUser, myPublications})
+  
+
   const queryUser = await UserModel.findById(id);
 
   res.render("profile/profile-id.hbs", { queryUser });
@@ -122,6 +132,7 @@ router.post("/follow/:id", isLoggedIn, async (req, res, next) => {
     });
   }
 
+
   const origin = req.headers.referer.split("/").slice(-2);
   if (origin.includes("profile")) {
     res.redirect(`/profile/${origin[1]}`);
@@ -140,5 +151,8 @@ router.post("/:id", isLoggedIn, async (req, res, next) => {
 
   res.render("profile/profile-id.hbs", { queryUser });
 });
+
+
+
 
 module.exports = router;

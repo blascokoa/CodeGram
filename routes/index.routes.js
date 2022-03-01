@@ -170,4 +170,8 @@ const isAdmin = require("../utils/is_admin");
 
 router.use("/profile", userRoutes);
 
+const searchRoutes = require("./search.routes");
+const { route } = require("./auth.routes");
+router.use("/search", searchRoutes);
+
 module.exports = router;
