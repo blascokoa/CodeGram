@@ -5,7 +5,9 @@ const Comment = require("../models/Comment.model");
 
 /* GET home page */
 router.get("/", isLoggedIn, async (req, res) => {
-  const publications = await Publication.find().populate("owner");
+  const publications = await Publication.find()
+    .sort({ createdAt: -1 })
+    .populate("owner");
   res.render("index.hbs", { publications });
 });
 
@@ -75,7 +77,8 @@ router.post("/like/:id", isLoggedIn, async (req, res, next) => {
   const query_publication = await Publication.findById(id);
   console.log(req.headers);
 
-  if (!query_publication.likes.includes(req.user._id)) {   //mirar para los followers
+  if (!query_publication.likes.includes(req.user._id)) {
+    //mirar para los followers
     await Publication.findByIdAndUpdate(id, { $push: { likes: req.user._id } });
   } else {
     await Publication.findByIdAndUpdate(id, { $pull: { likes: req.user._id } });
