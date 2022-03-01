@@ -1,4 +1,11 @@
 
+{{#if errorMessage}}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> Your search didn't report any result.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+
 {{#each publications}}
     <div class="text-card">
         <div class="flex-row flex-fill-space">

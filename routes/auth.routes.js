@@ -19,7 +19,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-  const { username, password, email, passwordConfirm, name } = req.body;
+  const { username, password, email, passwordConfirm, name, checkbox } = req.body;
 
   if (!username || !email) {
     return res.status(400).render("auth/signup", {
@@ -36,6 +36,12 @@ router.post("/signup", (req, res) => {
     return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be the same.",
     });
+
+  }
+    if(!checkbox){
+      return res.status(400).render("auth/signup", {
+        errorMessage: "You need to accept the privacy policy.",
+    })
   }
 
   //   ! This use case is using a regular expression to control for special characters and min length

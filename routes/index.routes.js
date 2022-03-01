@@ -158,4 +158,8 @@ router.use("/", authRoutes);
 const userRoutes = require("./user.routes");
 router.use("/profile", userRoutes);
 
+const searchRoutes = require("./search.routes");
+const { route } = require("./auth.routes");
+router.use("/search", searchRoutes);
+
 module.exports = router;

@@ -95,12 +95,18 @@ router.get("/:id", isLoggedIn, async(req, res, next) =>{
     return;
   }
   const queryUser = await UserModel.findById(id)
+  const myPublications = await Publication.find({
+    owner: id
+  })
   
 
-  res.render("profile/profile-id.hbs", {queryUser})
+  res.render("profile/profile-id.hbs", {queryUser, myPublications})
   
 
 
 })
+
+
+
 
 module.exports = router;
