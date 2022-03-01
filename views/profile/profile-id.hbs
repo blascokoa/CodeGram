@@ -36,14 +36,18 @@
 
 {{!-- <div class="d-flex flex-column bd-highlight mb-3 align-items-center">
     <h2>{{queryUser.name}}'s PROFILE</h2>
-    <form action="">
-        <button>Follow</button>
+    <form action="/profile/follow/{{queryUser._id}}" method="post">
+        <button>{{follow queryUser.followers}}</button>
     </form>
     <div class="circular--landscape circular--landscape-size"><img src="{{queryUser.profile_pic}}"  width="150" alt="profile's picture"></div>
 
     
     <h4>{{queryUser.username}}</h4>
     <h4>Bio??</h4>
+
+    <form action="/profile/{{queryUser._id}}" method="post" style="display: {{isAdminHBS}}">
+        <button type="submit">Delete User Account using Admin powers</button>
+    </form>
     
 
 </div> --}}

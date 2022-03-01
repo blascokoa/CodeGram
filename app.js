@@ -9,6 +9,7 @@ require("./db");
 // https://www.npmjs.com/package/express
 const express = require("express");
 
+const isAdmin = require("./utils/is_admin");
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
@@ -31,11 +32,12 @@ hbs.registerHelper("language", function (lang) {
 });
 
 hbs.registerHelper("count", (arrayToCount)=> {
+  console.log(arrayToCount)
   return arrayToCount.length;
 });
 
 hbs.registerHelper("isOwner", (ownerId)=>{
-  if(ownerId._id.toString() === app.locals.user._id){
+  if(ownerId._id.toString() === app.locals.user._id || isAdmin(app.locals.user)){
     return "flex"
   }else{
     return "none"
@@ -43,10 +45,26 @@ hbs.registerHelper("isOwner", (ownerId)=>{
 })
 
 hbs.registerHelper("isOwnerMsg", (ownerId)=>{
-  if(ownerId._id.toString() === app.locals.user._id){
+  if(ownerId._id.toString() === app.locals.user._id || isAdmin(app.locals.user)){
     return ""
   }else{
     return "margin-left"
+  }
+})
+
+hbs.registerHelper("isAdminHBS", () =>{
+   if (app.locals.user.role === "admin"){
+     return "flex"
+   }else{
+     return "none"
+   }
+})
+
+hbs.registerHelper("follow", (followersArray) =>{
+  if (followersArray.includes(app.locals.user._id)){
+    return "UnFollow"
+  }else{
+    return "Follow"
   }
 })
 
@@ -83,6 +101,7 @@ const index = require("./routes/index.routes");
 app.use("/", index);
 
 const authRoutes = require("./routes/auth.routes");
+const UserModel = require("./models/User.model");
 app.use("/auth", authRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
