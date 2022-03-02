@@ -1,0 +1,31 @@
+<h1 class="text-center custom-font" >CodeGram Chat</h1>
+<br>
+<hr>
+<br>
+
+<div id="chat" class="d-flex flex-column-reverse">
+
+    {{#each cleanConversation}}
+
+<div id="conversacion-individual">
+    
+    <img src="{{this.from.profile_pic}}" alt="" width="20px">
+    <h6>@{{this.from.username}} says:</h6>
+    <p>{{this.textMessage}}</p>
+    <p>{{cuttingdata this.createdAt}}</p>
+    <hr>
+</div>
+
+{{/each}}
+
+</div>
+
+
+
+<br><br><br><br><hr><br><br><br><br>
+<div>
+    <form action="/chat/{{id}}" method="post">
+    <textarea name="textMessage" id="textMessage" cols="30" rows="10" placeholder="Text something to {{toUser.username}}"></textarea>
+    <button>Send</button>
+    </form>
+</div>

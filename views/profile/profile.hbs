@@ -1,21 +1,5 @@
-
-<div class="d-flex justify-content-around profile-container">
-<div class="publications-left custom-font">
-  <ul>
-    {{#each myPublications}}
-      <li><a href="/details/{{this._id}}">{{this.description}}</a></li>
-    {{/each}}
-  </ul>
-
-</div>
-<div class="verticalLine"></div>
-
-
-
-
-<div class="d-flex flex-column bd-highlight mb-3 align-items-center profile-center">
-  <h2 >{{myProfile.name}}'s PROFILE</h2>
-  <div class="circular--landscape circular--landscape-size">
+<div class="flex-row ">  
+  <div class="circular--landscape circular--landscape-size margin-top">
     <img
       
       src="{{myProfile.profile_pic}}"
@@ -23,22 +7,50 @@
       alt="profile's picture"
     />
   </div>
-  <br>
-  <span>{{count myProfile.followers}} followers</span>
-  <br><br>
-  <form action="/profile/edit">
+  <div class="margin-top">
+    <br><br><br><br><br>
+    <form action="/profile/edit">
     <button class="button-14" role="button">Edit profile</button>
   </form>
+  </div>
+  
+<div class="d-flex flex-column bd-highlight mb-3 align-items-center profile-center margin-top">
+  <br><br>
   <h4>{{myProfile.username}}</h4>
   <span>{{myProfile.bio}}</span>
+</div>
 
 </div>
 
-<div class="verticalLine"></div>
+<br>
+<span>{{count myProfile.followers}} followers |  {{count myProfile.followings}} followings</span>
+<br><br><br>
+<hr>
 
-<div class="comments-rigth">
-    <ul>
-        <li>comentarios aqui</li>
-    </ul>
+
+  
+
+    <h1 class="text-center" >My Publications</h1>
+      
+      <div class="flex-row flex-wrap">
+{{#each myPublications}}
+ <a class="text-decoration-none" href="/details/{{this._id}}">
+    <div class="text-card2">
+        <div >
+
+            <pre class="card-body2"><code class="{{language this.language}}">{{this.code}}</code></pre>
+        </div>
+        <div class="flex-row bottom-card">
+            <div class="card-details flex-row ">
+                <a class="text-decoration-none" href="/details/{{this._id}}">{{this.description}}</a>
+            </div>
+        </div>
+    </div>
+    </a>
+
+{{/each}}
 </div>
-</div>
+    
+  
+
+

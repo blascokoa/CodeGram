@@ -1,39 +1,73 @@
-<div class="d-flex justify-content-around profile-container">
-<div class="publications-left custom-font">
-  <ul>
-    {{#each myPublications}}
-      <li><a href="/details/{{this._id}}">{{this.description}}</a></li>
-    {{/each}}
-  </ul>
-
-</div>
-<div class="verticalLine"></div>
-
-
-<div class="d-flex flex-column bd-highlight mb-3 align-items-center">
-    <h2>{{queryUser.name}}'s PROFILE</h2>
+<div class="flex-row">
+  <div class="circular--landscape circular--landscape-size margin-top2">
+    <img src="{{queryUser.profile_pic}}" width="150" alt="profile's picture" />
+  </div>
+  <div class="margin-top2">
+    <br /><br /><br /><br /><br />
     <form action="/profile/follow/{{queryUser._id}}" method="post">
-        <button>{{follow queryUser.followers}}</button>
+      <button>{{follow queryUser.followers}}</button>
     </form>
-    <div class="circular--landscape circular--landscape-size"><img src="{{queryUser.profile_pic}}"  width="150" alt="profile's picture"></div>
 
-
-    <h4>{{queryUser.username}}</h4>
-    <h4>Bio??</h4>
-
-    <form action="/profile/{{queryUser._id}}" method="post" style="display: {{isAdminHBS}}">
-        <button type="submit">Delete User Account using Admin powers</button>
+    <form
+      action="/profile/{{queryUser._id}}"
+      method="post"
+      style="display: {{isAdminHBS}}"
+    >
+      <button type="submit">Delete User Account using Admin powers</button>
     </form>
-  <h4>{{queryUser.username}}</h4>
-  <span>{{queryUser.bio}}</span>
+
+  </div>
+
+  <div
+    class="d-flex flex-column bd-highlight mb-3 align-items-center profile-center margin-top2 toggle-button-text"
+  >
+    <br /><br />
+    <h4>@{{queryUser.username}}</h4>
+    <span>{{queryUser.bio}}</span>
+  </div>
 
 </div>
 
-<div class="verticalLine"></div>
-
-<div class="comments-rigth">
-    <ul>
-        <li>comentarios aqui</li>
-    </ul>
+<br />
+<div class="flex-row justify-content-between">
+<span>{{count queryUser.followers}}
+  followers |
+  {{count queryUser.followings}}
+  followings</span>
+  
+  <form action="/chat/{{queryUser._id}}">
+<button>Send a message</button>
+</form>
 </div>
+<br /><br />
+<hr />
+
+
+
+{{! esta fet }}
+
+<h1 class="text-center">My Publications</h1>
+
+<div class="flex-row flex-wrap">
+  {{#each myPublications}}
+    <a class="text-decoration-none" href="/details/{{this._id}}">
+      <div class="text-card2">
+        <div>
+
+          <pre class="card-body2"><code
+              class="{{language this.language}}"
+            >{{this.code}}</code></pre>
+        </div>
+        <div class="flex-row bottom-card">
+          <div class="card-details flex-row">
+            <a
+              class="text-decoration-none"
+              href="/details/{{this._id}}"
+            >{{this.description}}</a>
+          </div>
+        </div>
+      </div>
+    </a>
+
+  {{/each}}
 </div>

@@ -5,12 +5,12 @@
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {{/if}}
-
+<div class="flex-row flex-wrap">
 {{#each publications}}
     <div class="text-card">
         <div class="flex-row flex-fill-space">
             <img class="rounded--img" src={{#if this.owner.profile_pic}}{{this.owner.profile_pic}}{{else}}"./images/image.jpg"{{/if}} alt="profile-pic" width="40px" height="40px"/>
-            <code class="username-size remove-style"><a href="/profile/{{this.owner._id}}">{{this.owner.username}}</a></code>
+            <code class="username-size remove-style"><a href="/profile/{{this.owner._id}}">@{{this.owner.username}}</a></code>
         </div>
         <div >
 
@@ -33,10 +33,11 @@
                 </div>
             </div>
             <div>
-                <a href="/details/{{this._id}}">More Details</a>
+                <a href="/details/{{this._id}}"><img src="/images/points.png" alt="" width="25px"></a>
             </div>
         </div>
     </div>
 
 {{/each}}
+</div>
 
