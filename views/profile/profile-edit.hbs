@@ -1,7 +1,10 @@
 <div class="d-flex flex-column bd-highlight mb-3 align-items-center">
-  <h2>{{editProfile.name}}'s PROFILE SETTINGS</h2>
+  <div id="edit-profile-container">
+    <h1 class="custom-font">SETTINGS</h1>
+  <h2 class="custom-font">profile of {{editProfile.name}}</h2>
 
   <form action="/profile/edit" method="POST" enctype="multipart/form-data">
+  
     <div class="circular--landscape circular--landscape-size">
       <img
         src="{{editProfile.profile_pic}}"
@@ -9,42 +12,65 @@
         alt="profile's picture"
       /></div>
 
-    <br />
-    {{! <label for="image">Changes your photo</label> }}
-    <br />
-    <input type="file" name="image" />
+    <input type="file" id="file" name="image" />
+    <label for="file" class="btn-3">
+      <span>Upload picture</span>
+    </label>
 
-    <br />
-    <br /><br />
-
-    <label for="username">Username</label>
-    <input type="text" name="username" value="{{editProfile.username}}" />
-
-    <br />
-
-    <label for="name">Name</label>
-    <input type="text" name="name" value="{{editProfile.name}}" />
-    <br />
-
-    <label for="bio">Bio</label>
-
-    <textarea rows="5" cols="60" name="bio" value="{{editProfile.bio}}">Write something about you</textarea>
-    <br />
-
-    <button class="button-14" role="button">Update Changes</button>
-
+    <div class="input-group mb-3">
+      <span
+        class="input-group-text"
+        id="inputGroup-sizing-default"
+      >Username</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default"
+        name="username"
+        value="{{editProfile.username}}"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default"
+        name="name"
+        value="{{editProfile.name}}"
+      />
+    </div>
+    <div class="input-group">
+      <span class="input-group-text">Biography</span>
+      <textarea
+        class="form-control"
+        aria-label="With textarea"
+        rows="5"
+        cols="60"
+        name="bio"
+        value="{{editProfile.bio}}"
+        placeholder="Write something about you"
+      >{{editProfile.bio}}</textarea>
+    </div>
+    <div id="update-button">
+      <button class="button-14" role="button">Update Changes</button>
+    </div>
+    
   </form>
 
-  <!-- Button trigger modal -->
   <button
-    class="button-14"
+    class="button-15"
     type="button"
     class="btn btn-primary"
     data-toggle="modal"
     data-target="#exampleModalCenter"
+    
   >
     Delete my account
   </button>
+  </div>
 
   <!-- Modal -->
   <div

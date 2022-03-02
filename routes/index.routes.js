@@ -147,4 +147,7 @@ const searchRoutes = require("./search.routes");
 const { route } = require("./auth.routes");
 router.use("/search", searchRoutes);
 
+const chatRoutes = require("./chat.routes")
+router.use("/chat", chatRoutes)
+
 module.exports = router;

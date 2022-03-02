@@ -1,7 +1,9 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  
 }
+
 @font-face {
   font-family: "CFBacktoSchool";
   src: url("../fonts/CFBacktoSchool-Regular.ttf");
@@ -16,6 +18,9 @@ a {
 
 .card-body {
   height: 250px;
+}
+.card-body2 {
+  height: 125px;
 }
 
 .flex-column {
@@ -47,6 +52,12 @@ a {
   margin-top: 75px;
   margin-left: 25px;
   width: 500px;
+}
+.text-card2 {
+  margin-top: 75px;
+  margin-left: 25px;
+  width: 250px;
+  
 }
 
 .code-size {
@@ -172,6 +183,10 @@ input:checked + .slider:before {
 .margin-top {
   margin-top: 100px;
 }
+.margin-top2 {
+  margin-top: 30px;
+}
+
 
 .remove-style a {
   text-decoration: none;
@@ -221,19 +236,64 @@ input:checked + .slider:before {
   white-space: nowrap;
 }
 
-.button-14:active {
-  border-bottom-color: #a2a6ac;
+.button-15:active {
+  border-bottom-color: #d51c1c;
 }
 
-.button-14:active:hover {
-  border-bottom-color: #a2a6ac;
+.button-15:active:hover {
+  border-bottom-color: #a71212;
 }
 
-.button-14:hover {
-  border-color: #a2a6ac #979aa1 #82858a;
+.button-15:hover {
+  border-color: #e10c0c #ce1313 #cc1212;
 }
 
-.button-14:focus {
+.button-15:focus {
+  border-color: #e77600;
+  box-shadow: rgba(228, 121, 17, 0.5) 0 0 3px 2px;
+  outline: 0;
+}
+.button-15 {
+  margin-top: 100px;
+  background-image: linear-gradient(#f55454, #521919);
+  border-color: #d51a1a #cd1616 #a51a1a;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  box-shadow: rgba(211, 0, 0, 0.6) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember", Arial, sans-serif;
+  font-size: 15px;
+  height: 29px;
+  font-size: 13px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 11px;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.button-15:active {
+  border-bottom-color: #7b0836;
+}
+
+.button-15:active:hover {
+  border-bottom-color: #941111;
+}
+
+.button-15:hover {
+  border-color: #a51856 #d3105b #e13535;
+}
+
+.button-15:focus {
   border-color: #e77600;
   box-shadow: rgba(228, 121, 17, 0.5) 0 0 3px 2px;
   outline: 0;
@@ -284,5 +344,75 @@ margin: 10vh 2vh;
    color: black;
    font-size: 15px;
  }
+
+ [type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
+[type="file"] + label {
+  background: #c11752;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+    font-family: 'Rubik', sans-serif;
+    font-size: inherit;
+  font-weight: 15px;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 10px 10px;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle;
+  font-size: 8px;
+}
+
+  
+  .btn-3:hover {
+    background-color: darken(#c71b6c, 10%);
+  }
+
+  #edit-profile-container{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vh;
+
+
+  }
+
+  #update-button{
+    margin-top: 20px;
+    
+  }
+
+  #chat{
+    background-color: #d364ab;
+    width: 110vh;
+    height: 30vh;
+    border-radius: 12px;
+    text-align: center;
+  
+    overflow-y: scroll;
+  }
+
+  
+  
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 

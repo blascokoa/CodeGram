@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="/stylesheets/login.css"/>
+  <link rel="stylesheet" href="/stylesheets/login.css" />
 </head>
 
 <div class="login-root">
@@ -82,7 +82,10 @@
       <div
         class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center"
       >
-        <h1 class="remove-style"><a class="custom-font" href="/">CodeGram</a></h1>
+        <h1 class="remove-style"><a
+            class="custom-font"
+            href="/"
+          >CodeGram</a></h1>
       </div>
       <div class="formbg-outer">
         <div class="formbg">
@@ -105,9 +108,13 @@
 
               <div class="field padding-bottom--24 button-color-login">
                 <input type="submit" name="submit" value="Continue" />
-                <br><br>
+                <br /><br />
                 {{#if errorMessage}}
-                  {{errorMessage}}
+                  <div class="alert alert-danger" role="alert">
+
+                    {{errorMessage}}
+
+                  </div>
                 {{/if}}
               </div>
 

@@ -22,6 +22,7 @@ const userSchema = new Schema(
     },
     bio: {
       type: String,
+      // default: "I love Codegram",
     },
     role: {
       type: String,
@@ -32,6 +33,14 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: "User",
       },
+      
+    ],
+    followings: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+      
     ],
     password: {
       type: String,

@@ -118,10 +118,18 @@ router.post("/follow/:id", isLoggedIn, async (req, res, next) => {
     await UserModel.findByIdAndUpdate(id, {
       $push: { followers: req.user._id },
     });
+    await UserModel.findByIdAndUpdate(req.user._id, {
+      $push: {followings: id}
+    })
   } else {
     await UserModel.findByIdAndUpdate(id, {
       $pull: { followers: req.user._id },
     });
+    await UserModel.findByIdAndUpdate(req.user._id, {
+      $pull: {followings: id}
+    })
+
+    
   }
 
   const origin = req.headers.referer.split("/").slice(-2);
