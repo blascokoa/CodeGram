@@ -521,3 +521,8 @@ margin: 10vh 2vh;
   text-align: center;
   width: 100px;
 }
+
+.minus-margin{
+  margin-bottom: -17px;
+}
+

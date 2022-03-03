@@ -14,12 +14,11 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   const myPublications = await Publication.find({
     owner: id,
   });
-  const myProfileLimited = await UserModel.findById(id)
-  .limit(10)
-  .sort({ createdAt: -1 })
-  .populate("followers")
-  .populate("followings")
-  res.render("profile/profile.hbs", {myProfile, myProfileLimited, myPublications });
+  const myFollowers = myProfile.followers.slice(-10).reverse()
+  const myFollowings = myProfile.followings.slice(-10).reverse()
+  
+  
+  res.render("profile/profile.hbs", {myProfile, myFollowers, myPublications, myFollowings });
 });
 
 router.get("/edit", isLoggedIn, (req, res, next) => {
@@ -172,14 +171,14 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
     owner: id,
   });
   const myProfileLimited = await UserModel.findById(id)
-  .limit(10)
-  .sort({ createdAt: -1 })
   .populate("followers")
   .populate("followings")
+  const myFollowers = myProfileLimited.followers.slice(-10).reverse()
+  const myFollowings = myProfileLimited.followings.slice(-10).reverse()
 
 
 
-  res.render("profile/profile-id.hbs", { queryUser, myPublications, myProfileLimited });
+  res.render("profile/profile-id.hbs", { queryUser, myPublications, myProfileLimited, myFollowers, myFollowings });
 });
 
 router.post("/follow/:id", isLoggedIn, async (req, res, next) => {
