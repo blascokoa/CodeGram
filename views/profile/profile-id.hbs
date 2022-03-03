@@ -1,14 +1,14 @@
 <div class="flex-row flex-start">
 <div class="flex-row">
-  <div id="PHOTO-SEGUIR">
-  <div class="circular--landscape circular--landscape-size margin-top2">
-    <img src="{{queryUser.profile_pic}}" width="150" alt="profile's picture" />
+  <div  class="margin-top2">
+  <div class="circular--landscape circular--landscape-size">
+    <img src="{{queryUser.profile_pic}}" width="150"  alt="profile's picture" />
   </div>
-  <div id="botones">
+  <div class="flex-row">
   <div class="margin-top2">
     
     <form action="/profile/follow/{{queryUser._id}}" method="post">
-      <button>{{follow queryUser.followers}}</button>
+      <button class="send-button">{{follow queryUser.followers}}</button>
     </form>
 
     <form
@@ -20,9 +20,9 @@
     </form>
 
   </div>
-  <div>
+  <div class="margin-top2">
   <form action="/chat/{{queryUser._id}}">
-    <button>Send a message</button>
+    <button class="send-button">Message</button>
   </form>
   </div>
   </div>
@@ -101,7 +101,7 @@
 </div>
 
 
-<div class="las-publis">
+<div class="flex-column margin-top2">
 <h1 class="text-center">My Publications</h1>
 
 
@@ -111,7 +111,7 @@
 
     <div class="d-flex flex-column">
       <a
-        class="text-decoration-none text-width"
+        class="text-decoration-none text-width minus-margin"
         href="/details/{{this._id}}"
       >{{this.description}}</a>
 
