@@ -28,73 +28,64 @@
   </div>
   </div>
 
-  <div
-    class="d-flex flex-column bd-highlight mb-3 align-items-center profile-center margin-top2 toggle-button-text"
-  >
+  <div class="d-flex flex-column bd-highlight mb-3  profile-center margin-top2">
     <h4>@{{queryUser.username}}</h4>
     <span>{{queryUser.bio}}</span>
-    <div>
-  <a  data-bs-toggle="modal" data-bs-target="#exampleModal">{{count queryUser.followers}} followers</a>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        {{#each myFollowers}}
-        <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
-        <a href="/profile/{{this._id}}">{{this.username}}</a>
-        {{/each}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <form action="/profile/followers/{{queryUser._id}}">
-        <button class="btn btn-primary">See more followers</button>
-        </form>
-      </div>
+    <div class="flex-row">
+        <div class="set-style">
+            <a  data-bs-toggle="modal" data-bs-target="#exampleModal" >{{count queryUser.followers}} followers </a>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    {{#each myFollowers}}
+                    <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
+                    <a href="/profile/{{this._id}}">{{this.username}}</a>
+                    {{/each}}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="/profile/followers/{{queryUser._id}}">
+                    <button class="btn btn-primary">See more followers</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{!-- aqui acaba modal --}}
+        </div>
+        <div class="set-style margin-left">
+          <a  data-bs-toggle="modal" data-bs-target="#exampleModal2"> {{count queryUser.followings}} followings</a>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">followings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    {{#each myFollowings}}
+                    <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
+                    <a href="/profile/{{this._id}}">{{this.username}}</a>
+                    {{/each}}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="/profile/followings/{{queryUser._id}}">
+                    <button class="btn btn-primary">See more followings</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-
-{{!-- aqui acaba modal --}}
-
-  
-|  <a  data-bs-toggle="modal" data-bs-target="#exampleModal2">{{count queryUser.followings}} followings</a>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">followings</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        {{#each myFollowings}}
-        <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
-        <a href="/profile/{{this._id}}">{{this.username}}</a>
-        {{/each}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <form action="/profile/followings/{{queryUser._id}}">
-        <button class="btn btn-primary">See more followings</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-</div>
 
   </div>
 
@@ -109,7 +100,7 @@
 
   {{#each myPublications}}
 
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column box-border margin-left margin-top-sm">
       <a
         class="text-decoration-none text-width minus-margin"
         href="/details/{{this._id}}"
