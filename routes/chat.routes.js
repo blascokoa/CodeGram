@@ -3,6 +3,10 @@ const ChatModel = require("../models/Chat.model");
 const UserModel = require("../models/User.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+router.get("/dms", isLoggedIn, async (req, res, next) => {
+  res.render("chat/dms.hbs");
+});
+
 router.get("/:id", isLoggedIn, async (req, res, next) => {
   const { id } = req.params;
   const toUser = await UserModel.findById(id);

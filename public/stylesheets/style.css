@@ -405,7 +405,7 @@ margin: 10vh 2vh;
   }
 
   #edit-profile-container{
-    margin-top: 100px;
+    margin-top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -450,6 +450,10 @@ margin: 10vh 2vh;
   align-items: flex-start;
 }
 
+.flex-content-start{
+  justify-content: flex-start;
+}
+
 .margin-bot-sm{
   margin-bottom: 10px;
 }
@@ -471,4 +475,10 @@ margin: 10vh 2vh;
   background-color: var(--main-color);
   margin:2px;
   border-radius: 10px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 35vh 0 35vh;
 }
