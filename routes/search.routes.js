@@ -5,11 +5,13 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.get("/", isLoggedIn, async (req, res, next) => {
   let { searchReq } = req.query;
+
   if (searchReq.toLowerCase() === "javascript") {
     searchReq = "js";
   } else if (searchReq.toLowerCase() === "python") {
     searchReq = "py";
   }
+
   const languageSearch = await Publication.find({
     language: searchReq.toLowerCase(),
   }).populate("owner");

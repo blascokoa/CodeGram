@@ -1,3 +1,11 @@
+:root {
+  --main-color:rgba(208, 52, 107);
+  --main-color-transparent:rgba(208, 52, 107, 0.5);
+  --main-color-light:#D95C88;
+  --main-color-dark: rgb(84, 27, 61);
+}
+
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -31,6 +39,11 @@ a {
 .flex-row {
   display: flex;
   flex-direction: row;
+}
+
+.flex-row-rev {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .flex-centered-row {
@@ -196,12 +209,12 @@ input:checked + .slider:before {
 
 .remove-style a {
   text-decoration: none;
-  color: rgb(214, 51, 132);
+  color: var(--main-color-light);
 }
 
 .remove-style:hover a {
   text-decoration: none;
-  color: rgb(84, 27, 61);
+  color: var(--main-color-dark);
 }
 
 .circular--landscape {
@@ -341,7 +354,7 @@ margin: 10vh 2vh;
    padding: 20px;
    border-radius: 20px;
    border: white;
-   background-color: rgb(208, 52, 107);
+   background-color: var(--main-color);
    opacity: 0.8;
    width: 25vh;
    height: 25px;
@@ -352,6 +365,15 @@ margin: 10vh 2vh;
    font-size: 15px;
  }
 
+.send-button{
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 20px;
+  border: white;
+  background-color: var(--main-color-transparent);
+  width: 80px;
+}
+
  [type="file"] {
   height: 0;
   overflow: hidden;
@@ -359,7 +381,7 @@ margin: 10vh 2vh;
 }
 
 [type="file"] + label {
-  background: #c11752;
+  background: var(--main-color);
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -379,7 +401,7 @@ margin: 10vh 2vh;
 
   
   .btn-3:hover {
-    background-color: darken(#c71b6c, 10%);
+    background-color: var(--main-color-dark);
   }
 
   #edit-profile-container{
@@ -388,23 +410,23 @@ margin: 10vh 2vh;
     flex-direction: column;
     align-items: center;
     width: 40vh;
-
-
   }
 
   #update-button{
     margin-top: 20px;
-    
   }
 
   #chat{
-    background-color: #d364ab;
+    background-color: var(--main-color-transparent);
     width: 110vh;
     height: 30vh;
     border-radius: 12px;
     text-align: center;
-  
     overflow-y: scroll;
+  }
+
+  #textMessage{
+    height:15vh;
   }
 
 
@@ -416,19 +438,37 @@ margin: 10vh 2vh;
 }
 
 .logo-size-custom:hover{
-  color: #d364ab;
+  color: var(--main-color);
   transition-duration: 1s;
 }
 
+.flex-align-end{
+  align-items: flex-end;
+}
 
+.flex-align-start{
+  align-items: flex-start;
+}
 
+.margin-bot-sm{
+  margin-bottom: 10px;
+}
 
+.small-text{
+  margin-bottom: -15px;
+  margin-left: 15px;
+  font-size:9px;
 
+}
 
+.border-chat-box{
+  background-color: var(--main-color-transparent);
+  margin:2px;
+  border-radius: 10px;
+}
 
-
-
-
-
-
-
+.border-chat-box-to{
+  background-color: var(--main-color);
+  margin:2px;
+  border-radius: 10px;
+}
