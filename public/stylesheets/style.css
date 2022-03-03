@@ -72,6 +72,12 @@ a {
   width: 250px;
   
 }
+.text-card3 {
+  margin-top: 72px;
+  margin-left: 25px;
+  width: 300px;
+  
+}
 
 .code-size {
   font-size: 20px;
@@ -122,6 +128,9 @@ a {
 
 .margin-left {
   margin-left: 30px;
+}
+.margin-left2 {
+  margin-left: 55px;
 }
 
 /* The switch - the box around the slider */
@@ -466,6 +475,15 @@ margin: 10vh 2vh;
     text-align: center;
     overflow-y: scroll;
   }
+  #comments-container{
+    background-color: var(--main-color-transparent);
+    width: 280px;
+    height: 200px;
+    border-radius: 12px;
+    text-align: center;
+    overflow-y: scroll;
+    padding-top: 25px;
+  }
 
   #textMessage{
     height:15vh;
@@ -551,3 +569,6 @@ margin: 10vh 2vh;
   width: 300px;
 }
 
+.minus-margin2{
+  margin-bottom: -1px;
+}
