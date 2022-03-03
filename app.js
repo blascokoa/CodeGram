@@ -86,17 +86,17 @@ hbs.registerHelper("userLiked", (likeArray, empty)=>{
   }
 })
 
-
+hbs.registerHelper("chatColor", (fromUser)=>{
+  if (app.locals.user._id === fromUser._id.toString()){
+    return "border-chat-box"
+  } else{
+    return "border-chat-box-to"
+  }
+})
 
 hbs.registerHelper("cuttingdata", (originalData)=>{
-  console.log(typeof originalData)
-
- return originalData.toString().split(" ").slice(1, 5).join(" ")
-
-
-  
-}
-)
+  return originalData.toString().split(" ").slice(1, 5).join(" ")
+})
 
 
 const app = express();
