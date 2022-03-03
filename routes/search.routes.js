@@ -4,18 +4,24 @@ const Publication = require("../models/Publication.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.get("/", isLoggedIn, async (req, res, next) => {
-  let { lang } = req.query;
-  if (lang.toLowerCase() === "javascript") {
-    lang = "js";
-  } else if (lang.toLowerCase() === "python") {
-    lang = "py";
+  let { searchReq } = req.query;
+  if (searchReq.toLowerCase() === "javascript") {
+    searchReq = "js";
+  } else if (searchReq.toLowerCase() === "python") {
+    searchReq = "py";
   }
   const languageSearch = await Publication.find({
-    language: lang.toLowerCase(),
+    language: searchReq.toLowerCase(),
   }).populate("owner");
+
+  const userSearch = await UserModel.find({
+    username: { $regex: new RegExp(searchReq, "i") },
+  });
 
   if (languageSearch.length > 0) {
     res.render("search.hbs", { languageSearch });
+  } else if (userSearch.length > 0) {
+    res.render("search.hbs", { userSearch });
   } else {
     const publications = await Publication.find()
       .sort({ createdAt: -1 })
@@ -23,13 +29,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     const errorMessage = "there are no results for your query";
     res.render("index.hbs", { publications, errorMessage });
   }
-
-  // UserModel.findOne({username: req.query.username})
-  // .then((responsive)=>{
-  //     console.log(responsive)
-  //   res.render("search.hbs", {responsive})
-
-  // })
 });
 
 module.exports = router;
