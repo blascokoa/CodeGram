@@ -1,7 +1,7 @@
 
 <div class="flex-column flex-centered-row">
-    <div class="flex-row flex-centered-row new-element-position" >
-        <div class="text-card">
+    <div class="flex-row flex-centered-row new-element-position flex-align-start" >
+        <div class="text-card box-border padding-sm ">
             <div class="flex-row flex-fill-space">
                 <img class="circular--landscape" src={{#if query_publication.owner.profile_pic}}{{query_publication.owner.profile_pic}}{{else}}"../images/image.jpg"{{/if}} alt="profile-pic" width="40px" height="40px"/>
                 <code class="username-size remove-style"> <a href="/profile/{{query_publication.owner._id}}">{{query_publication.owner.username}}</a> </code>
@@ -31,29 +31,37 @@
 
             </div>
         </div>
+        <div class="flex-column">
         <div class="margin-left">
-            <div>
+            <div class="text-card3 box-border padding-sm">
+                <div >
                 <h5>Write your comment here:</h5>
                     <form method="post" action="/details/{{query_publication._id}}">
                         <div class="flex-column">
                             <label for="newCommentElement">
-                                <textarea name="comment">Add a comment here</textarea>
+                                <textarea name="comment" placeholder="Add a comment here"></textarea>
                             </label>
-                            <div class="flex-row flex-fill-space">
+                            </div>
+                            <div class="flex-row flex-fill-space margin-top-sm ">
                                 <input class="margin-left" type="image" src="../images/send.png" width="20px" alt="heart-red" name="like"/>
-                                <p class="margin-zero">Send comment</p>
+                                
+                                <p class="margin-zero  minus-margin2 ">Send comment</p>
                             </div>
 
                         </div>
                     </form>
             </div>
-            <div>
+            
+            
+            
+        </div>
+        <div class="text-card3 box-border padding-sm margin-left2">
                 <div>
-                    <h5 class="comment-margin" style="position: fixed">Other comments:</h5>
+                    <h5 class="comment-margin" >Other comments:</h5>
                 </div>
-                <div style="position: fixed; margin-top: 50px">
+                <div id="comments-container" style="margin-top: 50px">
                     {{#each query_publication.comments}}
-                        <div class="flex-row">
+                        <div class="flex-row" >
                             <div style="display: {{isOwner this.owner._id}}">
                                 <form method="post" action="/delete_comment/{{this._id}}">
                                     <input type="image" src="../images/trash.png" width="20px" alt="trash-image" name="like" />
@@ -73,8 +81,9 @@
                     {{/each}}
                 </div>
             </div>
-        </div>
     </div>
+    </div>
+    
 
     <div>
         {{#if errorMessage}}
