@@ -9,11 +9,17 @@ const Comments = require("../models/Comment.model");
 
 router.get("/", isLoggedIn, async (req, res, next) => {
   const id = req.session.user._id;
-  const myProfile = await UserModel.findById(id);
+  const myProfile = await UserModel.findById(id)
+  .populate("followers").populate("followings")
   const myPublications = await Publication.find({
     owner: id,
   });
-  res.render("profile/profile.hbs", { myProfile, myPublications });
+  const myProfileLimited = await UserModel.findById(id)
+  .limit(10)
+  .sort({ createdAt: -1 })
+  .populate("followers")
+  .populate("followings")
+  res.render("profile/profile.hbs", {myProfile, myProfileLimited, myPublications });
 });
 
 router.get("/edit", isLoggedIn, (req, res, next) => {
@@ -90,6 +96,65 @@ router.post("/delete", isLoggedIn, async (req, res, next) => {
   //  res.redirect("/");
 });
 
+
+router.get("/followers", isLoggedIn,(req, res, next)=>{
+  UserModel.findById(req.session.user._id)
+  .populate("followers")
+  .then((followers) =>{
+    console.log(followers)
+    res.render("profile/followers.hbs", {followers})
+
+  })
+  .catch((err) =>{
+    next(err)
+  })
+  
+})
+
+router.get("/followings", isLoggedIn,(req, res, next)=>{
+  UserModel.findById(req.session.user._id)
+  .populate("followings")
+  .then((followings) =>{
+    
+    res.render("profile/followings.hbs", {followings})
+
+  })
+  .catch((err) =>{
+    next(err)
+  })
+  
+})
+
+router.get("/followers/:id", isLoggedIn,(req, res, next)=>{
+  UserModel.findById(req.params.id)
+  .populate("followers")
+  .then((followers) =>{
+    console.log(followers)
+    res.render("profile/followers.hbs", {followers})
+
+  })
+  .catch((err) =>{
+    next(err)
+  })
+  
+})
+
+router.get("/followings/:id", isLoggedIn, (req, res, next)=>{
+  UserModel.findById(req.params.id)
+  .populate("followings")
+  .then((followings) =>{
+    
+    res.render("profile/followings.hbs", {followings})
+
+  })
+  .catch((err) =>{
+    next(err)
+  })
+  
+})
+
+
+
 router.post("/delete/:id", isLoggedIn, async (req, res, next) => {
   // route used by admin for delete accounts
   res.redirect("/");
@@ -106,7 +171,15 @@ router.get("/:id", isLoggedIn, async (req, res, next) => {
   const myPublications = await Publication.find({
     owner: id,
   });
-  res.render("profile/profile-id.hbs", { queryUser, myPublications });
+  const myProfileLimited = await UserModel.findById(id)
+  .limit(10)
+  .sort({ createdAt: -1 })
+  .populate("followers")
+  .populate("followings")
+
+
+
+  res.render("profile/profile-id.hbs", { queryUser, myPublications, myProfileLimited });
 });
 
 router.post("/follow/:id", isLoggedIn, async (req, res, next) => {
@@ -150,5 +223,8 @@ router.post("/:id", isLoggedIn, async (req, res, next) => {
 
   res.render("profile/profile-id.hbs", { queryUser });
 });
+
+
+
 
 module.exports = router;

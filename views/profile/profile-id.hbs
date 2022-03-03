@@ -29,45 +29,154 @@
 </div>
 
 <br />
-<div class="flex-row justify-content-between">
-<span>{{count queryUser.followers}}
-  followers |
-  {{count queryUser.followings}}
-  followings</span>
-  
-  <form action="/chat/{{queryUser._id}}">
-<button>Send a message</button>
-</form>
+{{!-- aqui empieza --}}
+
+{{!-- //aqui comensa modal --}}
+  <a  data-bs-toggle="modal" data-bs-target="#exampleModal">{{count queryUser.followers}} followers</a>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{#each myProfileLimited.followers}}
+        <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
+        <a href="/profile/{{this._id}}">{{this.username}}</a>
+        {{/each}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="/profile/followers/{{queryUser._id}}">
+        <button class="btn btn-primary">See more followers</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+{{!-- aqui acaba modal --}}
+
+  
+|  <a  data-bs-toggle="modal" data-bs-target="#exampleModal2">{{count queryUser.followings}} followings</a>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">followings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{#each myProfileLimited.followings}}
+        <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
+        <a href="/profile/{{this._id}}">{{this.username}}</a>
+        {{/each}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="/profile/followings/{{queryUser._id}}">
+        <button class="btn btn-primary">See more followings</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{{!-- aqui termina --}}
+{{!-- <span>
+<div class="flex-row justify-content-between">
+  <a href="/profile/followers/{{queryUser._id}}">{{count queryUser.followers}}
+    followers </a>|<a href="/profile/followings/{{queryUser._id}}">{{count queryUser.followings}}
+    followings</a>
+  
+    </span> --}}
+
+  <form action="/chat/{{queryUser._id}}">
+    <button>Send a message</button>
+  </form>
+{{!-- </div> --}}
 <br /><br />
 <hr />
-
-
 
 {{! esta fet }}
 
 <h1 class="text-center">My Publications</h1>
 
 <div class="flex-row flex-wrap">
-  {{#each myPublications}}
-    <a class="text-decoration-none" href="/details/{{this._id}}">
-      <div class="text-card2">
-        <div>
 
-          <pre class="card-body2"><code
-              class="{{language this.language}}"
-            >{{this.code}}</code></pre>
-        </div>
-        <div class="flex-row bottom-card">
-          <div class="card-details flex-row">
-            <a
-              class="text-decoration-none"
-              href="/details/{{this._id}}"
-            >{{this.description}}</a>
+  {{#each myPublications}}
+
+    <div class="d-flex flex-column">
+      <a
+        class="text-decoration-none text-width"
+        href="/details/{{this._id}}"
+      >{{this.description}}</a>
+
+      <a class="text-decoration-none"  href="/details/{{this._id}}">
+        <div class="text-card2">
+          <div>
+
+            <pre class="card-body2"><code
+                class="{{language this.language}}"
+              >{{this.code}}</code></pre>
           </div>
+          <div class="flex-row bottom-card">
+            <div class="card-details flex-row">
+              <div class="like-details">
+                <form method="post" action="/like/{{this._id}}">
+                  <code class="code-size">{{count this.likes}}</code>
+                  <input
+                    type="image"
+                    src="/images/heart-red.png"
+                    width="20px"
+                    alt="heart-red"
+                    name="like"
+                    style="display: {{userLiked this.likes true}}"
+                  />
+                  <input
+                    type="image"
+                    src="/images/heart-empty.png"
+                    width="20px"
+                    alt="heart-red"
+                    name="like"
+                    style="display: {{userLiked this.likes false}}"
+                  />
+                </form>
+              </div>
+              <div class="messages-details">
+                <code class="code-size">{{count this.comments}}</code>
+                <img src="/images/comment.png" alt="comment" width="20px" />
+              </div>
+            </div>
+            <div>
+              <a href="/details/{{this._id}}"><img
+                  src="/images/points.png"
+                  alt=""
+                  width="25px"
+                /></a>
+            </div>
+          </div>
+
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
 
   {{/each}}
 </div>
