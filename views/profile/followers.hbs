@@ -1,0 +1,9 @@
+<H1>Followers</H1>
+<p>{{count followers.followers}} in total</p>
+
+<ul>
+    {{#each followers.followers}}
+    <img src="{{this.profile_pic}}" alt="" width="20px">
+    <a href="/profile/{{this._id}}">{{this.username}}</a>
+    {{/each}}
+</ul>

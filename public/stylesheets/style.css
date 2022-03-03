@@ -54,7 +54,7 @@ a {
   width: 500px;
 }
 .text-card2 {
-  margin-top: 75px;
+  margin-top: 10px;
   margin-left: 25px;
   width: 250px;
   
@@ -398,6 +398,16 @@ margin: 10vh 2vh;
     text-align: center;
   
     overflow-y: scroll;
+  }
+
+  .text-width{
+    width: 250px;
+    margin-left: 25px;
+    color: black;
+    font-size: 14px;
+    font-style: italic;
+
+  
   }
 
   
