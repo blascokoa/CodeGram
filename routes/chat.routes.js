@@ -4,24 +4,33 @@ const UserModel = require("../models/User.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.get("/dms", isLoggedIn, async (req, res, next) => {
-  // blasc a recivido mensajes de solo una persona
-  queryToMessage = await ChatModel.find({ from: req.session.user._id })
+  let aggregatedUsers = [];
+
+  // blasc a enviado mensajes
+  const queryToMessage = await ChatModel.find({ from: req.session.user._id })
     .sort({ createdAt: -1 })
-    .distinct("to");
+    .populate("to");
 
-  // Blasc22 a enviado a dos personas distintas
-  queryFromMessage = await ChatModel.find({ to: req.session.user._id })
+  queryToMessage.forEach((user) => {
+    aggregatedUsers.push(user.to);
+  });
+
+  // Blasc22 a recibido mensajes user: 81ed
+  const queryFromMessage = await ChatModel.find({ to: req.session.user._id })
     .sort({ createdAt: -1 })
-    .distinct("from");
+    .populate("from");
 
-  console.log(queryFromMessage);
-  console.log(queryToMessage);
+  queryFromMessage.forEach((user) => {
+    aggregatedUsers.push(user.from);
+  });
 
-  let querySenders = await ChatModel.find({
-    $or: [{ from: req.session.user._id }, { to: req.session.user._id }],
-  }).sort({ createdAt: -1 });
+  // Filter all the duplicated
+  aggregatedUsers = aggregatedUsers.filter(
+    (arr, index, self) =>
+      index === self.findIndex((t) => t.username === arr.username)
+  );
 
-  console.log(querySenders);
+  res.render("chat/dms.hbs", { aggregatedUsers });
 });
 
 router.get("/:id", isLoggedIn, async (req, res, next) => {

@@ -216,6 +216,26 @@ input:checked + .slider:before {
   color: var(--main-color-dark);
 }
 
+.remove-style-dark a {
+  text-decoration: none;
+  color: var(--main-color-dark);
+}
+
+.remove-style-dark:hover a {
+  text-decoration: none;
+  color: white;
+}
+
+.set-style {
+  color: var(--main-color-dark);
+
+}
+
+.set-style:hover {
+  transform: scale(1.2);
+  color: var(--main-color-dark);
+}
+
 .circular--landscape {
   display: inline-block;
   position: relative;
@@ -406,6 +426,7 @@ margin: 10vh 2vh;
   .box-border{
     box-shadow: 7px 7px 2px 0px rgba(128, 0, 0, 1);
     border: 1px solid var(--main-color);
+    border-radius: 5px;
   }
 
   .box-shadow-no-border{
@@ -524,5 +545,9 @@ margin: 10vh 2vh;
 
 .minus-margin{
   margin-bottom: -17px;
+}
+
+.with300{
+  width: 300px;
 }
 
