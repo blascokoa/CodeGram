@@ -128,7 +128,13 @@ router.post("/delete_comment/:id", isLoggedIn, async (req, res, next) => {
     query_comment.owner._id.toString() === req.session.user._id ||
     isAdmin(req.app.locals.user)
   ) {
-    await Publication.findByIdAndUpdate(id, { $pull: { comments: id } });
+    console.log(id);
+    await Publication.updateOne(
+      { comments: id },
+      {
+        $pull: { comments: id },
+      }
+    );
     await Comment.findByIdAndDelete(id);
   }
 
@@ -147,7 +153,7 @@ const searchRoutes = require("./search.routes");
 const { route } = require("./auth.routes");
 router.use("/search", searchRoutes);
 
-const chatRoutes = require("./chat.routes")
-router.use("/chat", chatRoutes)
+const chatRoutes = require("./chat.routes");
+router.use("/chat", chatRoutes);
 
 module.exports = router;

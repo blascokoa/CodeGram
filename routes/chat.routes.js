@@ -4,7 +4,24 @@ const UserModel = require("../models/User.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.get("/dms", isLoggedIn, async (req, res, next) => {
-  res.render("chat/dms.hbs");
+  // blasc a recivido mensajes de solo una persona
+  queryToMessage = await ChatModel.find({ from: req.session.user._id })
+    .sort({ createdAt: -1 })
+    .distinct("to");
+
+  // Blasc22 a enviado a dos personas distintas
+  queryFromMessage = await ChatModel.find({ to: req.session.user._id })
+    .sort({ createdAt: -1 })
+    .distinct("from");
+
+  console.log(queryFromMessage);
+  console.log(queryToMessage);
+
+  let querySenders = await ChatModel.find({
+    $or: [{ from: req.session.user._id }, { to: req.session.user._id }],
+  }).sort({ createdAt: -1 });
+
+  console.log(querySenders);
 });
 
 router.get("/:id", isLoggedIn, async (req, res, next) => {

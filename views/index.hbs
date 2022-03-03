@@ -7,7 +7,7 @@
 {{/if}}
 <div class="flex-row flex-wrap">
 {{#each publications}}
-    <div class="text-card">
+    <div class="text-card box-border padding-sm">
         <div class="flex-row flex-fill-space">
             <img class="rounded--img" src={{#if this.owner.profile_pic}}{{this.owner.profile_pic}}{{else}}"./images/image.jpg"{{/if}} alt="profile-pic" width="40px" height="40px"/>
             <code class="username-size remove-style"><a href="/profile/{{this.owner._id}}">@{{this.owner.username}}</a></code>
