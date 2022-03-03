@@ -1,9 +1,12 @@
+<div class="flex-row flex-start">
 <div class="flex-row">
+  <div id="PHOTO-SEGUIR">
   <div class="circular--landscape circular--landscape-size margin-top2">
     <img src="{{queryUser.profile_pic}}" width="150" alt="profile's picture" />
   </div>
+  <div id="botones">
   <div class="margin-top2">
-    <br /><br /><br /><br /><br />
+    
     <form action="/profile/follow/{{queryUser._id}}" method="post">
       <button>{{follow queryUser.followers}}</button>
     </form>
@@ -17,21 +20,20 @@
     </form>
 
   </div>
+  <div>
+  <form action="/chat/{{queryUser._id}}">
+    <button>Send a message</button>
+  </form>
+  </div>
+  </div>
+  </div>
 
   <div
     class="d-flex flex-column bd-highlight mb-3 align-items-center profile-center margin-top2 toggle-button-text"
   >
-    <br /><br />
     <h4>@{{queryUser.username}}</h4>
     <span>{{queryUser.bio}}</span>
-  </div>
-
-</div>
-
-<br />
-{{!-- aqui empieza --}}
-
-{{!-- //aqui comensa modal --}}
+    <div>
   <a  data-bs-toggle="modal" data-bs-target="#exampleModal">{{count queryUser.followers}} followers</a>
 
 
@@ -44,7 +46,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        {{#each myProfileLimited.followers}}
+        {{#each myFollowers}}
         <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
         <a href="/profile/{{this._id}}">{{this.username}}</a>
         {{/each}}
@@ -75,7 +77,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        {{#each myProfileLimited.followings}}
+        {{#each myFollowings}}
         <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
         <a href="/profile/{{this._id}}">{{this.username}}</a>
         {{/each}}
@@ -92,32 +94,16 @@
 
 
 
+</div>
+
+  </div>
+
+</div>
 
 
-
-
-
-
-
-{{!-- aqui termina --}}
-{{!-- <span>
-<div class="flex-row justify-content-between">
-  <a href="/profile/followers/{{queryUser._id}}">{{count queryUser.followers}}
-    followers </a>|<a href="/profile/followings/{{queryUser._id}}">{{count queryUser.followings}}
-    followings</a>
-  
-    </span> --}}
-
-  <form action="/chat/{{queryUser._id}}">
-    <button>Send a message</button>
-  </form>
-{{!-- </div> --}}
-<br /><br />
-<hr />
-
-{{! esta fet }}
-
+<div class="las-publis">
 <h1 class="text-center">My Publications</h1>
+
 
 <div class="flex-row flex-wrap">
 
@@ -179,4 +165,6 @@
     </div>
 
   {{/each}}
+</div>
+</div>
 </div>

@@ -1,106 +1,147 @@
-<div class="flex-row ">  
-  <div class="circular--landscape circular--landscape-size margin-top">
-    <img
-      
-      src="{{myProfile.profile_pic}}"
-      width="150"
-      alt="profile's picture"
-    />
-  </div>
-  <div class="margin-top">
-    <br><br><br><br><br>
-    <form action="/profile/edit">
-    <button class="button-14" role="button">Edit profile</button>
-  </form>
+<div id="total" class="flex-row flex-start">
+<div id="profile-info" class="flex-row">
+  <div class="circular--landscape circular--landscape-size">
+    <img src="{{myProfile.profile_pic}}" width="150" alt="profile's picture" />  
   </div>
   
-<div class="d-flex flex-column bd-highlight mb-3 align-items-center profile-center margin-top">
-  <br><br>
-  <h4>{{myProfile.username}}</h4>
-  <span>{{myProfile.bio}}</span>
-</div>
 
-</div>
+  <div
+    class="d-flex flex-column bd-highlight mb-3 align-items-center profile-center"
+  >
+    <br /><br />
+    <h4>{{myProfile.username}}</h4>
+    <span>{{myProfile.bio}}</span>
+    {{! //aqui comensa modal }}
 
-<br>
-
-  
-{{!-- //aqui comensa modal --}}
-  <a  data-bs-toggle="modal" data-bs-target="#exampleModal">{{count myProfile.followers}} followers</a>
-
+    <div id="followers">
+<a data-bs-toggle="modal" data-bs-target="#exampleModal">{{count
+    myProfile.followers
+  }}
+  followers</a>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
-      <div class="modal-body">
-        {{#each myProfileLimited.followers}}
-        <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
-        <a href="/profile/{{this._id}}">{{this.username}}</a>
+      <div class="modal-body flex-column">
+        {{#each myFollowers}}
+          <div class="flex-row remove-style margin-top-sm modal-every-user">
+            <img
+              class="rounded--img"
+              src="{{this.profile_pic}}"
+              alt=""
+              width="20px"
+              height="20px"
+            />
+            <a href="/profile/{{this._id}}">{{this.username}}</a>
+          </div>
+
         {{/each}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Close</button>
         <form action="/profile/followers">
-        <button class="btn btn-primary">See more followers</button>
+          <button class="btn btn-primary">See more followers</button>
         </form>
       </div>
     </div>
   </div>
 </div>
 
+{{! aqui acaba modal }}
 
-{{!-- aqui acaba modal --}}
-
-  
-|  <a  data-bs-toggle="modal" data-bs-target="#exampleModal2">{{count myProfile.followings}} followings</a>
-
+|
+<a data-bs-toggle="modal" data-bs-target="#exampleModal2">{{count
+    myProfile.followings
+  }}
+  followings</a>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">followings</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
-      <div class="modal-body">
-        {{#each myProfileLimited.followings}}
-        <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
-        <a href="/profile/{{this._id}}">{{this.username}}</a>
+      <div class="modal-body flex-column">
+        {{#each myFollowings}}
+
+          <div class="d-flex">
+            <img
+              class="rounded--img"
+              src="{{this.profile_pic}}"
+              alt=""
+              width="20px"
+            />
+            <a href="/profile/{{this._id}}">{{this.username}}</a>
+          </div>
         {{/each}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Close</button>
         <form action="/profile/followings">
-        <button class="btn btn-primary">See more followings</button>
+          <button class="btn btn-primary">See more followings</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+  </div>
+  </div>
 
-<br><br><br>
-<hr>
+</div>
 
 
-  
+{{!-- divs grans --}}
+<div id="publications-profile" class="flex-column margin-top2">
 
-    <h1 class="text-center" >My Publications</h1>
-      
-      <div class="flex-row flex-wrap">
-{{#each myPublications}}
-  <div class="d-flex flex-column">
+<h1 class="text-center">My Publications</h1>
+
+
+<div class="flex-row flex-wrap">
+  {{#each myPublications}}
+    <div class="d-flex flex-column">
       <a
-        class="text-decoration-none text-width"
+        class="text-decoration-none text-width minus-margin"
         href="/details/{{this._id}}"
       >{{this.description}}</a>
 
-      <a class="text-decoration-none"  href="/details/{{this._id}}">
+      <a class="text-decoration-none" href="/details/{{this._id}}">
         <div class="text-card2">
           <div>
 
@@ -149,9 +190,8 @@
       </a>
     </div>
 
-{{/each}}
+  {{/each}}
 </div>
-    
-  
 
-
+</div>
+</div>
