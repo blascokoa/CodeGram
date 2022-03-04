@@ -11,9 +11,9 @@
         <div class="flex-row flex-fill-space">
             <img class="rounded--img" src={{#if this.owner.profile_pic}}{{this.owner.profile_pic}}{{else}}"./images/image.jpg"{{/if}} alt="profile-pic" width="40px" height="40px"/>
             <code class="username-size remove-style"><a href="/profile/{{this.owner._id}}">@{{this.owner.username}}</a></code>
+            <a class="text-decoration-none text-width minus-margin margin-left" href="/details/{{this._id}}" >{{this.description}}</a>
         </div>
         <div >
-
             <pre class="card-body"><code class="{{language this.language}}">{{this.code}}</code></pre>
         </div>
         <div class="flex-row bottom-card">

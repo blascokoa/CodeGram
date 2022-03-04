@@ -1,20 +1,31 @@
-
 <div class="flex-centered-row flex-column">
-    <div>
-        <h1 class="custom-font">Your DMs</h1>
-    </div>
-    <div class="flex-container flex-content-start use-full-size border-chat-box with300">
-        <div class="flex-column box-shadow-no-border " style="width: 100%; overflow-y: scroll">
-            {{#each aggregatedUsers}}
-                <div class="remove-style-dark">
-                    <a href="/chat/{{this._id}}" >
-                    <div class="flex-row border-chat-box-to flex-centered-row" style="margin: 10px 10px 0 10px; padding: 10px" >
-                        <img class="margin-left rounded--img" src="{{this.profile_pic}}" alt="" width="50px" height="50px">
-                        <h6><strong>@{{this.username}}</strong></h6>
-                    </div>
-                    </a>
-                </div>
-            {{/each}}
+  <div>
+    <h1 class="custom-font">Your DMs</h1>
+  </div>
+  <div class="flex-container flex-content-start use-full-size border-chat-box with300">
+    <div
+      class="flex-column box-shadow-no-border"
+      style="width: 100%; overflow-y: scroll"
+    >
+      {{#each aggregatedUsers}}
+        <div class="remove-style-dark">
+          <a href="/chat/{{this._id}}">
+            <div
+              class="flex-row border-chat-box-to flex-centered-row"
+              style="margin: 10px 10px 0 10px; padding: 10px"
+            >
+              <img
+                class="margin-left rounded--img"
+                src="{{this.profile_pic}}"
+                alt=""
+                width="50px"
+                height="50px"
+              />
+              <h6><strong>@{{this.username}}</strong></h6>
+            </div>
+          </a>
         </div>
+      {{/each}}
     </div>
+  </div>
 </div>

@@ -1,28 +1,40 @@
-<h1 class="custom-font" >DMs with {{toUser.username}}</h1>
+<h1 class="custom-font">DMs with {{toUser.username}}</h1>
 
 <div class="flex-row">
-    <div id="chat" class="d-flex flex-column-reverse">
-        {{#each cleanConversation}}
-            <div id="conversacion-individual">
-                <div class="flex-column flex-align-start {{chatColor this.from}}">
-                    <div class="small-text">
-                        <p>{{cuttingdata this.createdAt}}</p>
-                    </div>
-                    <div class="flex-row">
-                        <img class="margin-left rounded--img" src="{{this.from.profile_pic}}" alt="" width="20px" height="20px">
-                        <h6><strong>@{{this.from.username}} says:</strong></h6>
-                        <p class="margin-left">{{this.textMessage}}</p>
-                    </div>
-                </div>
-            </div>
-        {{/each}}
-    </div>
-    <div class="margin-left">
-        <form action="/chat/{{toUser._id}}" method="post">
-            <div class="flex-column flex-align-end">
-                <textarea name="textMessage" id="textMessage" cols="30" rows="10" placeholder="Text something to {{toUser.username}}"></textarea>
-                <button class="send-button">Send</button>
-            </div>
-        </form>
-    </div>
+  <div id="chat" class="d-flex flex-column-reverse">
+    {{#each cleanConversation}}
+      <div id="conversacion-individual">
+        <div class="flex-column flex-align-start {{chatColor this.from}}">
+          <div class="small-text">
+            <p>{{cuttingdata this.createdAt}}</p>
+          </div>
+          <div class="flex-row">
+            <img
+              class="margin-left rounded--img"
+              src="{{this.from.profile_pic}}"
+              alt=""
+              width="20px"
+              height="20px"
+            />
+            <h6><strong>@{{this.from.username}} says:</strong></h6>
+            <p class="margin-left">{{this.textMessage}}</p>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div class="margin-left">
+    <form action="/chat/{{toUser._id}}" method="post">
+      <div class="flex-column flex-align-end">
+        <textarea
+          name="textMessage"
+          id="textMessage"
+          cols="30"
+          rows="10"
+          placeholder="Text something to {{toUser.username}}"
+        ></textarea>
+        <button class="send-button">Send</button>
+      </div>
+    </form>
+  </div>
 </div>
