@@ -249,6 +249,8 @@ input:checked + .slider:before {
 .circular--landscape-size {
   width: 150px;
   height: 150px;
+  /* max-width: 150px;
+  height: auto; */
 }
 
 .button-14 {

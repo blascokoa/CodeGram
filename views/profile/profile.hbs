@@ -2,10 +2,10 @@
   <div class="flex-column box-border padding-m">
     <div class="flex-column flex-centered-row">
       <div class="circular--landscape circular--landscape-size">
-        <img class="circular--landscape-size"
+        <img 
           src="{{myProfile.profile_pic}}"
 
-          alt="profile's picture"
+          alt="profile's picture" width="150"
         />
       </div>
       <div
@@ -45,13 +45,16 @@
                   </div>
                   <div class="modal-body">
                     {{#each myFollowers}}
+                    <div class="d-flex remove-style margin-bottom-line">
                       <img
                         class="rounded--img"
                         src="{{this.profile_pic}}"
                         alt=""
                         width="20px"
+                        height="20px"
                       />
                       <a href="/profile/{{this._id}}">{{this.username}}</a>
+                      </div>
                     {{/each}}
                   </div>
                   <div class="modal-footer">
@@ -97,13 +100,16 @@
                   </div>
                   <div class="modal-body">
                     {{#each myFollowings}}
+                    <div class="d-flex remove-style margin-bottom-line">
                       <img
                         class="rounded--img"
                         src="{{this.profile_pic}}"
                         alt=""
                         width="20px"
+                        height="20px"
                       />
                       <a href="/profile/{{this._id}}">{{this.username}}</a>
+                      </div>
                     {{/each}}
                   </div>
                   <div class="modal-footer">
