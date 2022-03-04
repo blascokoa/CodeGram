@@ -401,6 +401,14 @@ margin: 10vh 2vh;
   background-color: var(--main-color-transparent);
   width: 80px;
 }
+.send-button2{
+  
+  border-radius: 20px;
+  border: white;
+  background-color: white;
+
+}
+
 
  [type="file"] {
   height: 0;
@@ -571,4 +579,26 @@ margin: 10vh 2vh;
 
 .minus-margin2{
   margin-bottom: -1px;
+}
+
+.margin-bottom-line{
+  border-bottom-style: groove; 
+  border-bottom-width: 1px;
+  padding: 5px;
+}
+.results-title{
+  padding-top: 40px;
+  text-align: center;
+}
+
+.margin-left-box{
+  margin-left: 80px;
+}
+
+.margin-left-box2{
+  margin-left: 450px;
+}
+
+.followers-box{
+  overflow-y: scroll;
 }

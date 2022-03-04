@@ -1,9 +1,15 @@
-<H1>Followers</H1>
-<p>{{count followers.followers}} in total</p>
-
+<H1 class="results-title custom-font">Followers</H1>
+<p class="results-title custom-font">{{count followers.followers}} in total</p>
+<div class="text-card2 box-border padding-sm d-flex margin-top margin-left-box2 ">
 <ul>
+
+    <div class="flex-column followers-box">
     {{#each followers.followers}}
-    <img src="{{this.profile_pic}}" alt="" width="20px">
+    <div class="flex-row remove-style margin-bottom-line">
+    <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" height="20px">
     <a href="/profile/{{this._id}}">{{this.username}}</a>
+    </div>
     {{/each}}
+    </div>
 </ul>
+</div>
