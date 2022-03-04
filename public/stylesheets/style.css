@@ -392,9 +392,8 @@ input:checked + .slider:before {
   width: 80px;
 }
 .send-button2{
-  
+  border-style: none;
   border-radius: 20px;
-  border: white;
   background-color: white;
 
 }
