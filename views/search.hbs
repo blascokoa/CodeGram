@@ -1,22 +1,35 @@
-<div class="margin-top">
+<h4 class="results-title custom-font">Your results</h4>
+<div class="text-card box-border padding-sm d-flex margin-top margin-left-box">
+  <div class="margin-left">
     {{#if languageSearch}}
-        {{#each languageSearch}}
-            <div class="flex-row margin-top-sm">
-                <img class="rounded--img" src="{{this.owner.profile_pic}}" alt="profile-pic" width="40px" height="40px"/>
-                <a href="/details/{{this._id}}">{{this.description}}</a>
-            </div>
-        {{/each}}
+      {{#each languageSearch}}
+        <div class="flex-row margin-top-sm">
+          <img
+            class="rounded--img"
+            src="{{this.owner.profile_pic}}"
+            alt="profile-pic"
+            width="40px"
+            height="40px"
+          />
+          <a href="/details/{{this._id}}">{{this.description}}</a>
+        </div>
+      {{/each}}
     {{/if}}
     {{#if userSearch}}
-        {{#each userSearch}}
-            <div class="flex-row margin-top-sm">
-                <img class="rounded--img" src="{{this.profile_pic}}" alt="profile-pic" width="40px" height="40px"/>
-                <a href="/profile/{{this._id}}">{{this.username}}</a>
-            </div>
-        {{/each}}
+      {{#each userSearch}}
+        <div class="flex-row margin-top-sm remove-style margin-bottom-line">
+          <img
+            class="rounded--img"
+            src="{{this.profile_pic}}"
+            alt="profile-pic"
+            width="40px"
+            height="40px"
+          />
+          <a href="/profile/{{this._id}}">{{this.username}}</a>
+        </div>
+      {{/each}}
     {{/if}}
 
+  </div>
+
 </div>
-
-
-
