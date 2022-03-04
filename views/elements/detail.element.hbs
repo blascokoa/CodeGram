@@ -6,7 +6,7 @@
                 <img class="circular--landscape" src={{#if query_publication.owner.profile_pic}}{{query_publication.owner.profile_pic}}{{else}}"../images/image.jpg"{{/if}} alt="profile-pic" width="40px" height="40px"/>
                 <code class="username-size remove-style"> <a href="/profile/{{query_publication.owner._id}}">{{query_publication.owner.username}}</a> </code>
             </div>
-            <div class="">
+            <div class="padding-m">
                 <pre class="card-body"><code class="{{language query_publication.language}}">{{query_publication.code}}</code></pre>
             </div>
             <div class="flex-row bottom-card">
@@ -32,36 +32,34 @@
             </div>
         </div>
         <div class="flex-column">
-        <div class="margin-left">
-            <div class="text-card3 box-border padding-sm">
-                <div >
-                <h5>Write your comment here:</h5>
-                    <form method="post" action="/details/{{query_publication._id}}">
-                        <div class="flex-column">
-                            <label for="newCommentElement">
-                                <textarea name="comment" placeholder="Add a comment here"></textarea>
-                            </label>
-                            </div>
-                            <div class="flex-row flex-fill-space margin-top-sm ">
-                                <input class="margin-left" type="image" src="../images/send.png" width="20px" alt="heart-red" name="like"/>
-                                
-                                <p class="margin-zero  minus-margin2 ">Send comment</p>
-                            </div>
+            <div class="margin-left">
+                <div class="text-card3 box-border padding-sm">
+                    <div >
+                    <h5>Write your comment here:</h5>
+                        <form method="post" action="/details/{{query_publication._id}}">
+                            <div class="flex-column">
+                                <label for="newCommentElement">
+                                    <textarea name="comment" placeholder="Add a comment here"></textarea>
+                                </label>
+                                </div>
+                                <div class="flex-row flex-fill-space margin-top-sm ">
+                                    <input class="margin-left" type="image" src="../images/send.png" width="20px" alt="heart-red" name="like"/>
 
-                        </div>
-                    </form>
+                                    <p class="margin-zero  minus-margin2 ">Send comment</p>
+                                </div>
+
+                            </div>
+                        </form>
+                </div>
             </div>
-            
-            
-            
-        </div>
-        <div class="text-card3 box-border padding-sm margin-left2">
+
+            <div class="text-card3 box-border padding-sm margin-left2">
                 <div>
                     <h5 class="comment-margin" >Other comments:</h5>
                 </div>
-                <div id="comments-container" style="margin-top: 50px">
+                <div id="comments-container">
                     {{#each query_publication.comments}}
-                        <div class="flex-row" >
+                        <div class="flex-row border-comment">
                             <div style="display: {{isOwner this.owner._id}}">
                                 <form method="post" action="/delete_comment/{{this._id}}">
                                     <input type="image" src="../images/trash.png" width="20px" alt="trash-image" name="like" />
@@ -75,16 +73,12 @@
 
                                 <p class="margin-zero">{{this.message}}</p>
                             </div>
-
                         </div>
-
                     {{/each}}
                 </div>
             </div>
+        </div>
     </div>
-    </div>
-    
-
     <div>
         {{#if errorMessage}}
             {{errorMessage}}

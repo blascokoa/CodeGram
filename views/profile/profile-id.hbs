@@ -1,161 +1,210 @@
 <div class="flex-row flex-start">
-<div class="flex-row">
-  <div  class="margin-top2">
-  <div class="circular--landscape circular--landscape-size">
-    <img src="{{queryUser.profile_pic}}" width="150"  alt="profile's picture" />
-  </div>
-  <div class="flex-row">
-  <div class="margin-top2">
-    
-    <form action="/profile/follow/{{queryUser._id}}" method="post">
-      <button class="send-button">{{follow queryUser.followers}}</button>
-    </form>
+  <div class="flex-column box-border padding-m">
+    <div class="flex-column flex-centered-row">
+      <div class="circular--landscape circular--landscape-size">
+        <img
+          src="{{queryUser.profile_pic}}"
+          width="150"
+          alt="profile's picture"
+        />
+      </div>
+      <div
+        class="d-flex flex-column bd-highlight profile-center flex-centered-row"
+      >
+        <h4>@{{queryUser.username}}</h4>
+        <span>{{queryUser.bio}}</span>
 
-    <form
-      action="/profile/{{queryUser._id}}"
-      method="post"
-      style="display: {{isAdminHBS}}"
-    >
-      <button type="submit">Delete User Account using Admin powers</button>
-    </form>
-
-  </div>
-  <div class="margin-top2">
-  <form action="/chat/{{queryUser._id}}">
-    <button class="send-button">Message</button>
-  </form>
-  </div>
-  </div>
-  </div>
-
-  <div class="d-flex flex-column bd-highlight mb-3  profile-center margin-top2">
-    <h4>@{{queryUser.username}}</h4>
-    <span>{{queryUser.bio}}</span>
-    <div class="flex-row">
-        <div class="set-style">
-            <a  data-bs-toggle="modal" data-bs-target="#exampleModal" >{{count queryUser.followers}} followers </a>
+        <div class="flex-row">
+          <div class="set-style">
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal">{{count
+                queryUser.followers
+              }}
+              followers
+            </a>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
               <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Followers</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5
+                      class="modal-title"
+                      id="exampleModalLabel"
+                    >Followers</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
                   </div>
                   <div class="modal-body">
                     {{#each myFollowers}}
-                    <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
-                    <a href="/profile/{{this._id}}">{{this.username}}</a>
+                      <img
+                        class="rounded--img"
+                        src="{{this.profile_pic}}"
+                        alt=""
+                        width="20px"
+                      />
+                      <a href="/profile/{{this._id}}">{{this.username}}</a>
                     {{/each}}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >Close</button>
                     <form action="/profile/followers/{{queryUser._id}}">
-                    <button class="btn btn-primary">See more followers</button>
+                      <button class="btn btn-success">See more followers</button>
                     </form>
                   </div>
                 </div>
               </div>
             </div>
-            {{!-- aqui acaba modal --}}
-        </div>
-        <div class="set-style margin-left">
-          <a  data-bs-toggle="modal" data-bs-target="#exampleModal2"> {{count queryUser.followings}} followings</a>
+            {{! aqui acaba modal }}
+          </div>
+          <div class="set-style margin-left">
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal2">
+              {{count queryUser.followings}}
+              followings</a>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div
+              class="modal fade"
+              id="exampleModal2"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
               <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">followings</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5
+                      class="modal-title"
+                      id="exampleModalLabel"
+                    >followings</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
                   </div>
                   <div class="modal-body">
                     {{#each myFollowings}}
-                    <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
-                    <a href="/profile/{{this._id}}">{{this.username}}</a>
+                      <img
+                        class="rounded--img"
+                        src="{{this.profile_pic}}"
+                        alt=""
+                        width="20px"
+                      />
+                      <a href="/profile/{{this._id}}">{{this.username}}</a>
                     {{/each}}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >Close</button>
                     <form action="/profile/followings/{{queryUser._id}}">
-                    <button class="btn btn-primary">See more followings</button>
+                      <button class="btn btn-success">See more followings</button>
                     </form>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         </div>
+      </div>
+      <div class="flex-column">
+        <div>
+          <div class="flex-row bottom-card">
+            <form action="/profile/follow/{{queryUser._id}}" method="post">
+              <button class="send-button">{{follow
+                  queryUser.followers
+                }}</button>
+            </form>
+            <form action="/chat/{{queryUser._id}}">
+              <button class="send-button">Message</button>
+            </form>
+          </div>
+          <div>
+            <form
+              action="/profile/{{queryUser._id}}"
+              method="post"
+              style="display: {{isAdminHBS}}"
+            >
+              <button type="submit">Delete User Account using Admin powers</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
 
-</div>
-
-
-<div class="flex-column margin-top2">
-<h1 class="text-center">My Publications</h1>
-
-
-<div class="flex-row flex-wrap">
-
-  {{#each myPublications}}
-
-    <div class="d-flex flex-column box-border margin-left margin-top-sm">
-      <a
-        class="text-decoration-none text-width minus-margin"
-        href="/details/{{this._id}}"
-      >{{this.description}}</a>
-
-      <a class="text-decoration-none"  href="/details/{{this._id}}">
-        <div class="text-card2">
-          <div>
-
-            <pre class="card-body2"><code
-                class="{{language this.language}}"
-              >{{this.code}}</code></pre>
-          </div>
-          <div class="flex-row bottom-card">
-            <div class="card-details flex-row">
-              <div class="like-details">
-                <form method="post" action="/like/{{this._id}}">
-                  <code class="code-size">{{count this.likes}}</code>
-                  <input
-                    type="image"
-                    src="/images/heart-red.png"
-                    width="20px"
-                    alt="heart-red"
-                    name="like"
-                    style="display: {{userLiked this.likes true}}"
-                  />
-                  <input
-                    type="image"
-                    src="/images/heart-empty.png"
-                    width="20px"
-                    alt="heart-red"
-                    name="like"
-                    style="display: {{userLiked this.likes false}}"
-                  />
-                </form>
+  <div class="flex-column margin-top2">
+    <h1 class="text-center">My Publications</h1>
+    <div class="flex-row flex-wrap">
+      {{#each myPublications}}
+        <div class="d-flex flex-column box-border padding-sm margin-m">
+          <a
+            class="text-decoration-none text-width minus-margin"
+            href="/details/{{this._id}}"
+          >{{this.description}}</a>
+          <a class="text-decoration-none" href="/details/{{this._id}}">
+            <div class="padding-sm with300">
+              <div>
+                <pre class="card-body2"><code
+                    class="{{language this.language}}"
+                  >{{this.code}}</code></pre>
               </div>
-              <div class="messages-details">
-                <code class="code-size">{{count this.comments}}</code>
-                <img src="/images/comment.png" alt="comment" width="20px" />
+              <div class="flex-row bottom-card">
+                <div class="card-details flex-row">
+                  <div class="like-details">
+                    <form method="post" action="/like/{{this._id}}">
+                      <code class="code-size">{{count this.likes}}</code>
+                      <input
+                        type="image"
+                        src="/images/heart-red.png"
+                        width="20px"
+                        alt="heart-red"
+                        name="like"
+                        style="display: {{userLiked this.likes true}}"
+                      />
+                      <input
+                        type="image"
+                        src="/images/heart-empty.png"
+                        width="20px"
+                        alt="heart-red"
+                        name="like"
+                        style="display: {{userLiked this.likes false}}"
+                      />
+                    </form>
+                  </div>
+                  <div class="messages-details">
+                    <code class="code-size">{{count this.comments}}</code>
+                    <img src="/images/comment.png" alt="comment" width="20px" />
+                  </div>
+                </div>
+                <div>
+                  <a href="/details/{{this._id}}"><img
+                      src="/images/points.png"
+                      alt=""
+                      width="25px"
+                    /></a>
+                </div>
               </div>
             </div>
-            <div>
-              <a href="/details/{{this._id}}"><img
-                  src="/images/points.png"
-                  alt=""
-                  width="25px"
-                /></a>
-            </div>
-          </div>
-
+          </a>
         </div>
-      </a>
+      {{/each}}
     </div>
-
-  {{/each}}
-</div>
-</div>
+  </div>
 </div>
