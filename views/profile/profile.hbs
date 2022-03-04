@@ -124,7 +124,31 @@
 
       </div>
     </div>
-
+            <div class="modal-body flex-column">
+            {{#each myFollowers}}
+            <div class="flex-row remove-style margin-top-sm modal-every-user margin-bottom-line">
+              <img
+                      class="rounded--img"
+                      src="{{this.profile_pic}}"
+                      alt=""
+                      width="20px"
+                      height="20px"
+              />
+              <a href="/profile/{{this._id}}">{{this.username}}</a>
+          </div>
+        {{/each}}
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Close</button>
+        <form action="/profile/followings">
+          <button class="btn btn-primary">See more followings</button>
+        </form>
+      </div>
+    </div>
   </div>
 
   {{! divs grans }}
