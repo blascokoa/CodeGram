@@ -44,8 +44,10 @@
                   </div>
                   <div class="modal-body">
                     {{#each myFollowers}}
+                    <div class="d-flex remove-style margin-bottom-line">
                     <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
                     <a href="/profile/{{this._id}}">{{this.username}}</a>
+                    </div>
                     {{/each}}
                   </div>
                   <div class="modal-footer">
@@ -71,8 +73,10 @@
                   </div>
                   <div class="modal-body">
                     {{#each myFollowings}}
+                    <div class="d-flex remove-style margin-bottom-line">
                     <img class="rounded--img" src="{{this.profile_pic}}" alt="" width="20px" >
                     <a href="/profile/{{this._id}}">{{this.username}}</a>
+                    </div>
                     {{/each}}
                   </div>
                   <div class="modal-footer">
